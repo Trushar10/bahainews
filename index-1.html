@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahá'í News India - Unity in Diversity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+            padding: 2.5rem 0;
+            border-bottom: 4px solid #c9a961;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c5282;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .tagline {
+            color: #718096;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        nav {
+            background: #edf2f7;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+        }
+
+        .nav-content a {
+            color: #2d3748;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-content a:hover {
+            color: #c9a961;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, #2c5282 0%, #2b6cb0 100%);
+            color: #ffffff;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .newsletter-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .newsletter-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.875rem 1.25rem;
+            border: 2px solid #ffffff;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #ffffff;
+            color: #2c3e50;
+        }
+
+        .newsletter-form input[type="email"]:focus {
+            outline: none;
+            border-color: #c9a961;
+        }
+
+        .newsletter-form button {
+            padding: 0.875rem 2.5rem;
+            background: #c9a961;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .newsletter-form button:hover {
+            background: #b8954e;
+            transform: translateY(-2px);
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem 2rem;
+        }
+
+        .news-item {
+            background: transparent;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .news-item:hover .news-image {
+            opacity: 0.9;
+        }
+
+        .news-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            transition: opacity 0.3s;
+        }
+
+        .news-category {
+            display: inline-block;
+            background: #edf2f7;
+            color: #2c5282;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.813rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .news-date {
+            color: #a0aec0;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-title {
+            color: #2d3748;
+            font-size: 1.375rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .news-title:hover {
+            color: #2c5282;
+        }
+
+        .news-excerpt {
+            color: #4a5568;
+            font-size: 0.938rem;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .read-more {
+            color: #2c5282;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.938rem;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .read-more:after {
+            content: " →";
+            margin-left: 0.25rem;
+            transition: margin-left 0.3s;
+        }
+
+        .read-more:hover {
+            color: #c9a961;
+        }
+
+        .read-more:hover:after {
+            margin-left: 0.5rem;
+        }
+
+        /* Single Article Page */
+        .single-article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .article-featured-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .article-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #2d3748;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.75rem;
+            color: #2c5282;
+            margin: 2rem 0 1rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.375rem;
+            color: #2c5282;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #2c5282;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .back-link:before {
+            content: "← ";
+        }
+
+        .back-link:hover {
+            color: #c9a961;
+        }
+
+        /* Search Page */
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #2c5282;
+        }
+
+        .search-box button {
+            padding: 1rem 2rem;
+            background: #2c5282;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background: #2b6cb0;
+        }
+
+        .search-results-header {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin-bottom: 2rem;
+        }
+
+        .search-result-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        /* 404 Page */
+        .error-404 {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .error-404 h2 {
+            font-size: 8rem;
+            color: #c9a961;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .error-404 h3 {
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .error-404 p {
+            font-size: 1.125rem;
+            color: #718096;
+            margin-bottom: 2rem;
+        }
+
+        .error-404 .home-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #2c5282;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .error-404 .home-button:hover {
+            background: #2b6cb0;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #ffffff;
+            padding: 3rem 0;
+            margin-top: 3rem;
+            text-align: center;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-quote {
+            font-style: italic;
+            color: #2c5282;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Page Selector */
+        .page-selector {
+            background: #2c5282;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-selector select {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            margin-left: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-content {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input[type="email"] {
+                width: 100%;
+            }
+
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-featured-image {
+                height: 250px;
+            }
+
+            .error-404 h2 {
+                font-size: 5rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Selector (for demo purposes) -->
+    <div class="page-selector">
+        <label for="page-select">Select Page Template:</label>
+        <select id="page-select">
+            <option value="home">Home Page</option>
+            <option value="single">Single Article Page</option>
+            <option value="search">Search Page</option>
+            <option value="404">404 Error Page</option>
+        </select>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <h1>Bahá'í News India</h1>
+            <p class="tagline">Unity in Diversity - Building a Better World Together</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <a href="#home">Home</a>
+            <a href="#community">Community</a>
+            <a href="#service">Service</a>
+            <a href="#youth">Youth</a>
+            <a href="#events">Events</a>
+            <a href="#teachings">Teachings</a>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home-page" class="container">
+        <div class="news-grid">
+            <article class="news-item">
+                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=220&fit=crop" alt="Community Service" class="news-image">
+                <span class="news-category">Community Service</span>
+                <div class="news-date">January 11, 2026</div>
+                <h2 class="news-title">Youth Groups Lead Environmental Initiative in Mumbai</h2>
+                <p class="news-excerpt">Bahá'í youth across Mumbai have launched a community-driven environmental project, planting over 500 trees and organizing cleanup drives in local neighborhoods, inspiring others to join the movement for sustainability.</p>
+                <a href="#" class="read-more">Read More</a>
+            </article>
+
+            <article class="news-item">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=220&fit=crop" alt="Education" class="news-image">
+                <span class="news-category">Education</span>
+                <div class="news-date">January 10, 2026</div>
+                <h2 class="news-title">New Learning Centers Open in Rural Communities</h2>
+                <p class="news-excerpt">Educational programs inspired by Bahá'í principles are expanding to rural areas, offering children and adults opportunities for spiritual and moral development alongside academic learning.</p>
+                <a href="#" class="read-more">Read More</a>
+            </article>
+
+            <article class="news-item">
+                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400&h=220&fit=crop" alt="Unity Event" class="news-image">
+                <span class="news-category">Events</span>
+                <div class="news-date">January 10, 2026</div>
+                <h2 class="news-title">National Unity Conference Brings Together Diverse Voices</h2>
+                <p class="news-excerpt">Representatives from various faiths, cultures, and backgrounds gathered in Delhi for a conference focused on unity, social cohesion, and building bridges across communities throughout India.</p>
+                <a href="#" class="read-more">Read More</a>
+            </article>
+
+            <article class="news-item">
+                <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=400&h=220&fit=crop" alt="Women Empowerment" class="news-image">
+                <span class="news-category">Women's Advancement</span>
+                <div class="news-date">January 9, 2026</div>
+                <h2 class="news-title">Women's Empowerment Programs Transform Lives</h2>
+                <p class="news-excerpt">Community-based programs focused on women's empowerment and equality are creating positive change in villages across Karnataka, promoting education and economic opportunities for women and girls.</p>
+                <a href="#" class="read-more">Read More</a>
+            </article>
+
+            <article class="news-item">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=220&fit=crop" alt="Youth Conference" class="news-image">
+                <span class="news-category">Youth</span>
+                <div class="news-date">January 9, 2026</div>
+                <h2 class="news-title">Junior Youth Groups Explore Purpose and Service</h2>
+                <p class="news-excerpt">Hundreds of young people participate in programs designed to develop their spiritual capacities and empower them to contribute to the betterment of their communities through meaningful service projects.</p>
+                <a href="#" class="read-more">Read More</a>
+            </article>
+
+            <article class="news-item">
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=220&fit=crop" alt="Prayer Gathering" class="news-image">
+                <span class="news-category">Devotional Life</span>
+                <div class="news-date">January 8, 2026</div>
+                <h2 class="news-title">Devotional Gatherings Foster Community Spirit</h2>
+                <p class="news-excerpt">Regular prayer meetings and devotional gatherings continue to bring neighbors together, creating spaces for spiritual reflection, meaningful conversation, and strengthening bonds of friendship and unity.</p>
+                <a href="#" class="read-more">Read More</a>
+            </article>
+        </div>
+
+        <section class="newsletter-section">
+            <h2>Stay Connected with Our Community</h2>
+            <p>Subscribe to receive the latest news, events, and insights from the Bahá'í community across India</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- SINGLE ARTICLE PAGE -->
+    <div id="single-page" class="container hidden">
+        <article class="single-article">
+            <a href="#" class="back-link">Back to News</a>
+            
+            <div class="article-header">
+                <span class="news-category">Community Service</span>
+                <h1 class="article-title">Youth Groups Lead Environmental Initiative in Mumbai</h1>
+                <div class="article-meta">
+                    <span class="news-date">January 11, 2026</span>
+                </div>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=400&fit=crop" alt="Environmental Initiative" class="article-featured-image">
+
+            <div class="article-content">
+                <p>Bahá'í youth across Mumbai have launched an inspiring community-driven environmental project that is transforming neighborhoods and inspiring residents to take action for a more sustainable future.</p>
+
+                <p>Over the past three months, more than 200 young people have come together to plant over 500 trees across various communities in Mumbai. The initiative, which began as a small project in a single neighborhood, has grown into a citywide movement that is making a tangible difference in the urban landscape.</p>
+
+                <h2>A Vision for Sustainable Communities</h2>
+
+                <p>The project emerged from study circles and youth gatherings where participants explored the relationship between spiritual principles and environmental stewardship. Inspired by Bahá'í teachings on the unity of humanity and our responsibility to care for the earth, the young people decided to translate these ideals into concrete action.</p>
+
+                <p>"We realized that building a better world isn't just about grand gestures," explains Priya Sharma, one of the youth coordinators. "It starts with service in our own neighborhoods, working alongside our neighbors to create spaces that are healthier and more beautiful for everyone."</p>
+
+                <h2>Community Participation and Impact</h2>
+
+                <p>What makes this initiative particularly remarkable is its inclusive approach. The youth have actively engaged residents from all backgrounds, organizing regular cleanup drives, tree-planting events, and educational workshops on sustainable living practices.</p>
+
+                <p>Local schools have also joined the effort, with students participating in weekend activities and learning about environmental conservation. The project has created opportunities for people of different ages and backgrounds to work together toward a common goal, strengthening the bonds of community in the process.</p>
+
+                <h3>Looking Ahead</h3>
+
+                <p>As the initiative continues to grow, the youth are planning to expand their efforts to include community gardens, waste reduction programs, and educational campaigns about water conservation. Their success has inspired similar projects in other cities across India, demonstrating the power of collective action guided by a commitment to service.</p>
+
+                <p>The environmental initiative in Mumbai stands as a testament to what young people can achieve when they combine spiritual principles with practical action, working in a spirit of collaboration and service to create lasting positive change in their communities.</p>
+            </div>
+        </article>
+    </div>
+
+    <!-- SEARCH PAGE -->
+    <div id="search-page" class="container hidden">
+        <div class="search-container">
+            <h2 style="margin-bottom: 1.5rem; color: #2d3748;">Search Articles</h2>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Search for articles, topics, or keywords...">
+                <button>Search</button>
+            </div>
+
+            <div class="search-results-header">Search Results for "youth programs"</div>
+
+            <div class="search-result-item">
+                <span class="news-category">Youth</span>
+                <div class="news-date">January 9, 2026</div>
+                <h3 class="news-title">Junior Youth Groups Explore Purpose and Service</h3>
+                <p class="news-excerpt">Hundreds of young people participate in programs designed to develop their spiritual capacities and empower them to contribute to the betterment of their communities through meaningful service projects.</p>
+                <a href="#" class="read-more">Read More</a>
+            </div>
+
+            <div class="search-result-item">
+                <span class="news-category">Community Service</span>
+                <div class="news-date">January 11, 2026</div>
+                <h3 class="news-title">Youth Groups Lead Environmental Initiative in Mumbai</h3>
+                <p class="news-excerpt">Bahá'í youth across Mumbai have launched a community-driven environmental project, planting over 500 trees and organizing cleanup drives in local neighborhoods.</p>
+                <a href="#" class="read-more">Read More</a>
+            </div>
+
+            <div class="search-result-item">
+                <span class="news-category">Education</span>
+                <div class="news-date">January 10, 2026</div>
+                <h3 class="news-title">New Learning Centers Open in Rural Communities</h3>
+                <p class="news-excerpt">Educational programs inspired by Bahá'í principles are expanding to rural areas, offering children and adults opportunities for spiritual and moral development.</p>
+                <a href="#" class="read-more">Read More</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 404 ERROR PAGE -->
+    <div id="error-page" class="container hidden">
+        <div class="error-404">
+            <h2>404</h2>
+            <h3>Page Not Found</h3>
+            <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+            <p style="font-style: italic; color: #2c5282; margin-bottom: 2rem;">"Let your vision be world-embracing..."</p>
+            <a href="#" class="home-button">Return to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-quote">"The earth is but one country, and mankind its citizens"</p>
+            <p>&copy; 2026 Bahá'í News India. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.875rem;">Promoting unity, peace, and service across India</p>
+        </div>
+    </footer>
+
+    <script>
+        const pageSelect = document.getElementById('page-select');
+        const homePage = document.getElementById('home-page');
+        const singlePage = document.getElementById('single-page');
+        const searchPage = document.getElementById('search-page');
+        const errorPage = document.getElementById('error-page');
+
+        pageSelect.addEventListener('change', function() {
+            homePage.classList.add('hidden');
+            singlePage.classList.add('hidden');
+            searchPage.classList.add('hidden');
+            errorPage.classList.add('hidden');
+
+            switch(this.value) {
+                case 'home':
+                    homePage.classList.remove('hidden');
+                    break;
+                case 'single':
+                    singlePage.classList.remove('hidden');
+                    break;
+                case 'search':
+                    searchPage.classList.remove('hidden');
+                    break;
+                case '404':
+                    errorPage.classList.remove('hidden');
+                    break;
+            }
+
+            window.scrollTo(0, 0);
+        });
+    </script>
+</body>
+</html>
