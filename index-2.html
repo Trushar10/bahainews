@@ -158,6 +158,45 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
+        .news-item:first-child {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid #c9a961;
+            border-bottom: 2px solid #c9a961;
+            margin-bottom: 1rem;
+        }
+
+        .news-item:first-child .news-image {
+            height: 100%;
+            min-height: 300px;
+            margin-bottom: 0;
+        }
+
+        .news-item:first-child .news-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .news-item:first-child .news-title {
+            font-size: 2rem;
+            color: #2c5282;
+        }
+
+        .news-item:first-child .news-category {
+            background: #2c5282;
+            color: #ffffff;
+        }
+
+        .news-item:first-child .news-excerpt {
+            font-size: 1.063rem;
+        }
+
         .news-item:hover .news-image {
             opacity: 0.9;
         }
@@ -478,6 +517,19 @@
                 grid-template-columns: 1fr;
             }
 
+            .news-item:first-child {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .news-item:first-child .news-image {
+                min-height: 200px;
+            }
+
+            .news-item:first-child .news-title {
+                font-size: 1.5rem;
+            }
+
             .newsletter-form {
                 flex-direction: column;
             }
@@ -507,6 +559,7 @@
 <body>
     <!-- Page Selector (for demo purposes) -->
     <div class="page-selector">
+         <button onclick="window.location.href='index.html'" style="margin-left: 1rem; padding: 0.5rem 1rem; background: #c9a961; color: white; border: none; border-radius: 4px; cursor: pointer;">Back to Index</button>
         <label for="page-select">Select Page Template:</label>
         <select id="page-select">
             <option value="home">Home Page</option>
@@ -539,12 +592,16 @@
     <div id="home-page" class="container">
         <div class="news-grid">
             <article class="news-item">
-                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=220&fit=crop" alt="Community Service" class="news-image">
-                <span class="news-category">Community Service</span>
-                <div class="news-date">January 11, 2026</div>
-                <h2 class="news-title">Youth Groups Lead Environmental Initiative in Mumbai</h2>
-                <p class="news-excerpt">Bahá'í youth across Mumbai have launched a community-driven environmental project, planting over 500 trees and organizing cleanup drives in local neighborhoods, inspiring others to join the movement for sustainability.</p>
-                <a href="#" class="read-more">Read More</a>
+                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=400&fit=crop" alt="Community Service" class="news-image">
+                <div class="news-content-wrapper">
+                    <div>
+                        <span class="news-category">Community Service</span>
+                        <div class="news-date">January 11, 2026</div>
+                        <h2 class="news-title">Youth Groups Lead Environmental Initiative in Mumbai</h2>
+                        <p class="news-excerpt">Bahá'í youth across Mumbai have launched a community-driven environmental project, planting over 500 trees and organizing cleanup drives in local neighborhoods, inspiring others to join the movement for sustainability.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </div>
             </article>
 
             <article class="news-item">
