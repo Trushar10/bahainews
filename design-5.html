@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahá'í India News Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy:    #1b3354;
+            --navy-dk: #0f1e32;
+            --gold:    #c9965a;
+            --gold-lt: #f0d9bb;
+            --cream:   #f5f2ed;
+            --white:   #ffffff;
+            --ink:     #1a1a1a;
+            --ink-2:   #4a5568;
+            --muted:   #8a97a8;
+            --border:  #e2ddd6;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.55;
+        }
+
+        /* ─── HEADER ──────────────────────────────────────────── */
+        header {
+            background: var(--navy-dk);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-top {
+            max-width: 1520px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .logo { display: flex; flex-direction: column; gap: 2px; flex-shrink: 0; }
+        .logo-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.12rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1;
+        }
+        .logo-sub {
+            font-size: 0.57rem;
+            letter-spacing: 0.17em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        .header-nav { display: flex; }
+        .header-nav a {
+            padding: 0 0.85rem;
+            color: rgba(255,255,255,0.48);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 500;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid transparent;
+            transition: color .2s, border-color .2s;
+            white-space: nowrap;
+        }
+        .header-nav a:hover { color: #fff; border-bottom-color: var(--gold); }
+        .sub-btn {
+            margin-left: 1.2rem;
+            padding: .45rem 1.2rem;
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background .2s;
+        }
+        .sub-btn:hover { background: #b8854a; }
+        .ham {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .ham span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; }
+
+        .sub-bar { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); }
+        .sub-bar-inner {
+            max-width: 1520px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .cat-scroll { display: flex; overflow-x: auto; scrollbar-width: none; }
+        .cat-scroll::-webkit-scrollbar { display: none; }
+        .cat-btn {
+            padding: .48rem 1rem;
+            color: rgba(255,255,255,0.42);
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: color .2s, border-color .2s;
+        }
+        .cat-btn:hover   { color: rgba(255,255,255,0.75); }
+        .cat-btn.active  { color: #fff; border-bottom-color: var(--gold); }
+        .datestamp {
+            font-size: 0.66rem;
+            color: rgba(255,255,255,0.28);
+            white-space: nowrap;
+            flex-shrink: 0;
+            letter-spacing: .04em;
+        }
+
+        .mobile-nav { display: none; flex-direction: column; background: var(--navy-dk); border-top: 1px solid rgba(255,255,255,0.07); padding: .5rem 2rem 1.25rem; gap: .1rem; }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a { padding: .72rem 0; color: rgba(255,255,255,0.7); text-decoration: none; font-size: .92rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .mobile-nav .sub-btn { margin: .75rem 0 0; width: 100%; text-align: center; }
+
+        /* ─── TICKER ──────────────────────────────────────────── */
+        .ticker-wrap {
+            background: var(--gold);
+            overflow: hidden;
+            height: 30px;
+            display: flex;
+            align-items: center;
+        }
+        .ticker-label {
+            background: var(--navy-dk);
+            color: #fff;
+            padding: 0 1rem;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .ticker-track {
+            display: flex;
+            align-items: center;
+            animation: ticker 40s linear infinite;
+            white-space: nowrap;
+            gap: 2.5rem;
+            padding-left: 2rem;
+        }
+        @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .ticker-track span { font-size: 0.72rem; font-weight: 600; color: var(--navy-dk); }
+        .ticker-track .sep { opacity: .35; }
+
+        /* ─── MAIN ────────────────────────────────────────────── */
+        .main {
+            max-width: 1520px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        .section-eyebrow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+        .eyebrow-left { display: flex; align-items: center; gap: .75rem; }
+        .eyebrow-line { width: 26px; height: 2px; background: var(--gold); }
+        .eyebrow-text { font-size: 0.62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+        .view-all { font-size: .76rem; font-weight: 600; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: .3rem; transition: color .2s; }
+        .view-all:hover { color: var(--navy); }
+
+        /* ─── BENTO GRID ──────────────────────────────────────── */
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 3px;
+        }
+
+        /* ─── BASE CARD ───────────────────────────────────────── */
+        .card {
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: transform .25s ease, box-shadow .25s ease;
+            border: 1px solid var(--border);
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Image wrapper */
+        .card-img-wrap {
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .6s ease, filter .3s;
+            filter: brightness(.94) saturate(.92);
+        }
+        .card:hover .card-img-wrap img {
+            transform: scale(1.04);
+            filter: brightness(.88) saturate(1.05);
+        }
+
+        /* Recency badge over image top-left */
+        .recency-badge {
+            position: absolute;
+            top: .6rem;
+            left: .6rem;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+            background: rgba(10,18,30,0.62);
+            backdrop-filter: blur(6px);
+            border-radius: 100px;
+            padding: .2rem .6rem;
+            font-size: 0.58rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: .06em;
+        }
+        .r-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+        .r-live  .r-dot { background: #4ade80; animation: blink 1.6s infinite; }
+        .r-day   .r-dot { background: var(--gold); }
+        .r-week  .r-dot { background: var(--muted); }
+        @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.25;} }
+
+        /* Category tag — sits bottom-left of image */
+        .img-tag {
+            position: absolute;
+            bottom: .6rem;
+            left: .6rem;
+            z-index: 2;
+            display: inline-block;
+            padding: .18rem .55rem;
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: #fff;
+            border-radius: 1px;
+        }
+        .tag-service   { background: var(--gold); }
+        .tag-events    { background: #3a7bd5; }
+        .tag-education { background: #2a9d5c; }
+        .tag-youth     { background: #9b59b6; }
+        .tag-women     { background: #e05e8a; }
+        .tag-devotion  { background: #e07b39; }
+        .tag-health    { background: #1abc9c; }
+
+        /* Text panel — always BELOW image, white bg */
+        .card-body {
+            padding: .9rem 1rem .95rem;
+            display: flex;
+            flex-direction: column;
+            gap: .3rem;
+            background: var(--white);
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--ink);
+            line-height: 1.22;
+            font-weight: 700;
+        }
+        .card-excerpt {
+            font-size: .82rem;
+            color: var(--ink-2);
+            line-height: 1.58;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: .15rem;
+        }
+        .card-date {
+            font-size: .62rem;
+            font-weight: 500;
+            color: var(--muted);
+            letter-spacing: .03em;
+        }
+        .card-read {
+            font-size: .62rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .card-read:hover { color: #b8854a; }
+
+        /* ─── CARD SIZE VARIANTS ──────────────────────────────── */
+
+        /* HERO — 8 cols, big image */
+        .card-hero { grid-column: span 8; }
+        .card-hero .card-img-wrap { height: 360px; }
+        .card-hero .card-title { font-size: 1.5rem; }
+        .card-hero .card-body { padding: 1.1rem 1.3rem 1.15rem; gap: .4rem; }
+
+        /* TALL — 4 cols */
+        .card-tall { grid-column: span 4; }
+        .card-tall .card-img-wrap { height: 178px; }
+        .card-tall .card-title { font-size: .92rem; }
+        .card-tall .card-excerpt { display: none; }
+
+        /* MEDIUM — 4 cols */
+        .card-medium { grid-column: span 4; }
+        .card-medium .card-img-wrap { height: 200px; }
+        .card-medium .card-title { font-size: .92rem; }
+        .card-medium .card-excerpt { display: none; }
+
+        /* WIDE — 8 cols */
+        .card-wide { grid-column: span 8; }
+        .card-wide .card-img-wrap { height: 240px; }
+        .card-wide .card-title { font-size: 1.25rem; }
+
+        /* MEDIUM-WIDE — 6 cols */
+        .card-mw { grid-column: span 6; }
+        .card-mw .card-img-wrap { height: 230px; }
+        .card-mw .card-title { font-size: 1.1rem; }
+
+        /* SMALL — 3 cols */
+        .card-small { grid-column: span 3; }
+        .card-small .card-img-wrap { height: 140px; }
+        .card-small .card-title { font-size: .78rem; }
+        .card-small .card-excerpt { display: none; }
+        .card-small .card-body { padding: .7rem .8rem .75rem; }
+
+        /* TEXT-only card (no image, dark bg) */
+        .card-text {
+            grid-column: span 3;
+            background: var(--navy);
+            padding: 1.1rem 1rem;
+            gap: .5rem;
+            border-color: transparent;
+        }
+        .card-text:hover { background: var(--navy-dk); }
+        .card-text .card-title { font-family: 'Playfair Display', serif; font-size: .88rem; color: #fff; line-height: 1.25; }
+        .card-text .static-tag { display: inline-block; padding: .18rem .55rem; font-size: .55rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #fff; border-radius: 1px; margin-bottom: .2rem; }
+        .card-text .card-date { color: rgba(255,255,255,0.35); }
+        .card-text .card-read { color: var(--gold-lt); }
+
+        /* QUOTE card */
+        .card-quote {
+            grid-column: span 4;
+            background: var(--navy);
+            padding: 1.4rem 1.5rem;
+            justify-content: center;
+            gap: .75rem;
+            cursor: default;
+            border-color: transparent;
+        }
+        .card-quote:hover { transform: none; box-shadow: none; }
+        .card-quote blockquote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--gold-lt);
+            line-height: 1.55;
+        }
+        .card-quote cite {
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* ─── LOAD ANIMATIONS ─────────────────────────────────── */
+        .card { animation: fadeUp .45s ease both; }
+        .card:nth-child(1)  { animation-delay: .03s; }
+        .card:nth-child(2)  { animation-delay: .07s; }
+        .card:nth-child(3)  { animation-delay: .11s; }
+        .card:nth-child(4)  { animation-delay: .14s; }
+        .card:nth-child(5)  { animation-delay: .17s; }
+        .card:nth-child(6)  { animation-delay: .20s; }
+        .card:nth-child(7)  { animation-delay: .23s; }
+        .card:nth-child(8)  { animation-delay: .25s; }
+        .card:nth-child(9)  { animation-delay: .27s; }
+        .card:nth-child(10) { animation-delay: .29s; }
+        .card:nth-child(11) { animation-delay: .31s; }
+        .card:nth-child(12) { animation-delay: .33s; }
+        .card:nth-child(13) { animation-delay: .35s; }
+        .card:nth-child(14) { animation-delay: .37s; }
+        .card:nth-child(15) { animation-delay: .39s; }
+        .card:nth-child(16) { animation-delay: .41s; }
+        .card:nth-child(17) { animation-delay: .43s; }
+        .card:nth-child(18) { animation-delay: .44s; }
+        .card:nth-child(19) { animation-delay: .45s; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ─── NEWSLETTER STRIP ────────────────────────────────── */
+        .nl-strip { background: var(--navy-dk); margin-top: 3px; }
+        .nl-inner {
+            max-width: 1520px;
+            margin: 0 auto;
+            padding: 2rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .nl-text h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; margin-bottom: .25rem; }
+        .nl-text p  { font-size: .82rem; color: rgba(255,255,255,0.4); }
+        .nl-form { display: flex; gap: .55rem; flex-wrap: wrap; }
+        .nl-form input {
+            padding: .62rem 1.1rem;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 3px;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .84rem;
+            width: 230px;
+        }
+        .nl-form input::placeholder { color: rgba(255,255,255,.3); }
+        .nl-form input:focus { outline: none; border-color: var(--gold); }
+        .nl-form button {
+            padding: .62rem 1.4rem;
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s;
+        }
+        .nl-form button:hover { background: #b8854a; }
+
+        /* ─── FOOTER ──────────────────────────────────────────── */
+        footer { border-top: 1px solid var(--border); background: var(--cream); }
+        .footer-inner {
+            max-width: 1520px;
+            margin: 0 auto;
+            padding: 1.4rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .footer-links a { font-size: .76rem; color: var(--muted); text-decoration: none; transition: color .2s; }
+        .footer-links a:hover { color: var(--navy); }
+        .footer-copy { font-size: .7rem; color: #bbb; }
+
+        /* ─── POPUP ───────────────────────────────────────────── */
+        .popup-backdrop {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.52);
+            z-index: 500;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(3px);
+        }
+        .popup-backdrop.open { display: flex; }
+        .popup-box {
+            background: linear-gradient(135deg, #eaf3fc, #d8ebf8);
+            padding: 2.5rem 2.25rem;
+            border-radius: 6px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+            animation: popIn .3s ease-out both;
+        }
+        @keyframes popIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .popup-close {
+            position: absolute; top: .9rem; right: .9rem;
+            background: none; border: none; font-size: 1.5rem;
+            color: var(--navy); cursor: pointer; width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; transition: background .2s;
+        }
+        .popup-close:hover { background: rgba(0,0,0,0.07); }
+        .popup-box h2 { font-family: 'Playfair Display', serif; font-size: 1.55rem; color: var(--navy); margin-bottom: .5rem; }
+        .popup-box p  { font-size: .88rem; color: #4a6075; margin-bottom: 1.4rem; line-height: 1.65; }
+        .popup-form { display: flex; gap: .6rem; flex-wrap: wrap; }
+        .popup-form input { flex: 1; min-width: 170px; padding: .78rem 1rem; border: none; border-radius: 4px; font-size: .88rem; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.07); }
+        .popup-form input:focus { outline: 2px solid var(--gold); }
+        .popup-form button { padding: .78rem 1.5rem; background: var(--gold); color: #fff; border: none; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: .86rem; font-weight: 700; cursor: pointer; transition: background .2s; }
+        .popup-form button:hover { background: #b8854a; }
+
+        /* ─── RESPONSIVE ──────────────────────────────────────── */
+        @media (max-width: 1100px) {
+            .bento { grid-template-columns: repeat(8, 1fr); }
+            .card-hero   { grid-column: span 8; }
+            .card-wide   { grid-column: span 8; }
+            .card-tall, .card-medium, .card-mw { grid-column: span 4; }
+            .card-small  { grid-column: span 4; }
+            .card-text   { grid-column: span 4; }
+            .card-quote  { grid-column: span 4; }
+        }
+        @media (max-width: 720px) {
+            .header-nav, .sub-btn.desktop { display: none; }
+            .ham { display: flex; }
+            .datestamp { display: none; }
+            .bento { grid-template-columns: repeat(4, 1fr); gap: 2px; }
+            .card-hero, .card-wide, .card-mw,
+            .card-tall, .card-medium,
+            .card-small, .card-text, .card-quote { grid-column: span 4; }
+            .card-hero .card-img-wrap { height: 220px; }
+            .card-wide .card-img-wrap { height: 190px; }
+        }
+        @media (max-width: 480px) {
+            .bento { grid-template-columns: repeat(2, 1fr); }
+            .card-hero, .card-wide, .card-mw,
+            .card-tall, .card-medium,
+            .card-small, .card-text, .card-quote { grid-column: span 2; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────────────────── -->
+<header>
+    <div class="header-top">
+        <div class="logo">
+            <span class="logo-name">Bahá'í India News Service</span>
+            <span class="logo-sub">India · Community · Service</span>
+        </div>
+        <nav class="header-nav">
+            <a href="#">Home</a>
+            <a href="#">Community</a>
+            <a href="#">Service</a>
+            <a href="#">Youth</a>
+            <a href="#">Events</a>
+            <a href="#">Teachings</a>
+        </nav>
+        <button class="sub-btn desktop" onclick="document.getElementById('popup').classList.add('open')">Subscribe</button>
+        <button class="ham" onclick="document.getElementById('mnav').classList.toggle('open')" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="sub-bar">
+        <div class="sub-bar-inner">
+            <div class="cat-scroll">
+                <button class="cat-btn active">All</button>
+                <button class="cat-btn">Community Service</button>
+                <button class="cat-btn">Education</button>
+                <button class="cat-btn">Youth</button>
+                <button class="cat-btn">Events</button>
+                <button class="cat-btn">Women's Advancement</button>
+                <button class="cat-btn">Devotional Life</button>
+                <button class="cat-btn">Healthcare</button>
+            </div>
+            <span class="datestamp">Wednesday, 11 March 2026</span>
+        </div>
+    </div>
+    <nav class="mobile-nav" id="mnav">
+        <a href="#">Home</a><a href="#">Community</a><a href="#">Service</a>
+        <a href="#">Youth</a><a href="#">Events</a><a href="#">Teachings</a>
+        <button class="sub-btn" onclick="document.getElementById('popup').classList.add('open')">Subscribe</button>
+    </nav>
+</header>
+
+<!-- ── TICKER ─────────────────────────────────────────────── -->
+<div class="ticker-wrap">
+    <div class="ticker-label">Breaking</div>
+    <div style="overflow:hidden;flex:1;">
+        <div class="ticker-track">
+            <span>Youth climate initiative plants 500th tree in Mumbai</span>
+            <span class="sep">◆</span>
+            <span>National Unity Conference opens in New Delhi with 2,000 delegates</span>
+            <span class="sep">◆</span>
+            <span>Junior youth study circles launched in 14 rural districts</span>
+            <span class="sep">◆</span>
+            <span>Healthcare outreach reaches 50 remote villages in Karnataka</span>
+            <span class="sep">◆</span>
+            <span>Women's empowerment workshops begin across Rajasthan</span>
+            <span class="sep">◆</span>
+            <span>Youth climate initiative plants 500th tree in Mumbai</span>
+            <span class="sep">◆</span>
+            <span>National Unity Conference opens in New Delhi with 2,000 delegates</span>
+            <span class="sep">◆</span>
+            <span>Junior youth study circles launched in 14 rural districts</span>
+            <span class="sep">◆</span>
+            <span>Healthcare outreach reaches 50 remote villages in Karnataka</span>
+            <span class="sep">◆</span>
+            <span>Women's empowerment workshops begin across Rajasthan</span>
+            <span class="sep">◆</span>
+        </div>
+    </div>
+</div>
+
+<!-- ── MAIN ────────────────────────────────────────────────── -->
+<div class="main">
+
+    <div class="section-eyebrow">
+        <div class="eyebrow-left">
+            <div class="eyebrow-line"></div>
+            <span class="eyebrow-text">Latest News</span>
+        </div>
+        <a href="#" class="view-all">
+            View all stories
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+    </div>
+
+    <div class="bento">
+
+        <!-- ── ROW 1: HERO (8) + two talls (4+4) ─────────────── -->
+
+        <article class="card card-hero">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&h=700&fit=crop" alt="Community unity">
+                <span class="recency-badge r-live"><span class="r-dot"></span> 2 hours ago</span>
+                <span class="img-tag tag-service">Community Service</span>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title">Youth Groups Lead Environmental Initiative — 500 Trees Planted Across 12 Neighbourhoods in Mumbai</h2>
+                <p class="card-excerpt">Bahá'í youth across Mumbai have launched an inspiring community-driven environmental project, planting over 500 trees and organising citywide cleanup drives that are transforming neighbourhoods one block at a time.</p>
+                <div class="card-meta">
+                    <span class="card-date">January 11, 2026 · 5 min read</span>
+                    <a href="#" class="card-read">Read more →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card-tall">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=700&h=400&fit=crop" alt="Conference">
+                <span class="recency-badge r-live"><span class="r-dot"></span> 4 hrs ago</span>
+                <span class="img-tag tag-events">Events</span>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">National Unity Conference Brings Together 2,000 Delegates in New Delhi</h3>
+                <div class="card-meta">
+                    <span class="card-date">January 11, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card-tall">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&h=400&fit=crop" alt="Women">
+                <span class="recency-badge r-day"><span class="r-dot"></span> Yesterday</span>
+                <span class="img-tag tag-women">Women's Advancement</span>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Women's Empowerment Workshop Series Transforms Lives Across Karnataka</h3>
+                <div class="card-meta">
+                    <span class="card-date">January 10, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ── ROW 2: four mediums ──────────────────────────── -->
+
+        <article class="card card-medium">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=380&fit=crop" alt="Learning centres">
+                <span class="recency-badge r-day"><span class="r-dot"></span> Yesterday</span>
+                <span class="img-tag tag-education">Education</span>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">New Learning Centres Open in 14 Rural Communities Across India</h3>
+                <div class="card-meta">
+                    <span class="card-date">January 10, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card-medium">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=380&fit=crop" alt="Junior Youth">
+                <span class="recency-badge r-day"><span class="r-dot"></span> Yesterday</span>
+                <span class="img-tag tag-youth">Youth</span>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Junior Youth Groups Explore Purpose and Service in New Semester</h3>
+                <div class="card-meta">
+                    <span class="card-date">January 10, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card-medium">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=380&fit=crop" alt="Healthcare">
+                <span class="recency-badge r-day"><span class="r-dot"></span> 2 days ago</span>
+                <span class="img-tag tag-health">Healthcare</span>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Healthcare Outreach Reaches 50 Remote Villages in Karnataka</h3>
+                <div class="card-meta">
+                    <span class="card-date">January 9, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card-medium">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&h=380&fit=crop" alt="Devotional">
+                <span class="recency-badge r-day"><span class="r-dot"></span> 2 days ago</span>
+                <span class="img-tag tag-devotion">Devotional Life</span>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Devotional Gatherings Foster Deep Community Bonds Across Cities</h3>
+                <div class="card-meta">
+                    <span class="card-date">January 9, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ── ROW 3: WIDE (8) + 2 mediums (4+4) ─────────────── -->
+
+        <article class="card card-wide">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&h=500&fit=crop" alt="Library">
+                <span class="recency-badge r-week"><span class="r-dot"></span> 3 days ago</span>
+                <span class="img-tag tag-education">Education</span>
+            </div>
+            <div class="card-body">
+                <h2 class="card-title">Community Libraries Become Centres of Knowledge and Spiritual Growth for Thousands</h2>
+                <p class="card-excerpt">Across India, Bahá'í-inspired libraries have grown into vibrant hubs where people of all ages come to study, reflect, and engage with ideas that uplift the human spirit.</p>
+                <div class="card-meta">
+                    <span class="card-date">January 8, 2026 · 4 min read</span>
+                    <a href="#" class="card-read">Read more →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card-medium">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=380&fit=crop" alt="Study">
+                <span class="recency-badge r-week"><span class="r-dot"></span> 3 days ago</span>
+                <span class="img-tag tag-youth">Youth</span>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Study Circles Draw Hundreds of Youth to Moral Inquiry</h3>
+                <div class="card-meta">
+                    <span class="card-date">January 8, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card-medium">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1584820927498-cad0e7f9c6e0?w=600&h=380&fit=crop" alt="Community health">
+                <span class="recency-badge r-week"><span class="r-dot"></span> 3 days ago</span>
+                <span class="img-tag tag-health">Healthcare</span>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Free Health Camps Serve Over 3,000 Families in Rural Odisha</h3>
+                <div class="card-meta">
+                    <span class="card-date">January 8, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ── ROW 4: 3 smalls + quote ───────────────────────── -->
+
+        <article class="card card-small">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=250&fit=crop" alt="Volunteer">
+                <span class="img-tag tag-service">Service</span>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Volunteer Builders Construct New School in Chhattisgarh</h4>
+                <div class="card-meta">
+                    <span class="card-date">Jan 7, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card-small">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1607748851687-ba9a10438621?w=400&h=250&fit=crop" alt="Celebration">
+                <span class="img-tag tag-events">Events</span>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Annual Naw-Rúz Celebrations Planned Across 40 Cities</h4>
+                <div class="card-meta">
+                    <span class="card-date">Jan 7, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card-small">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=400&h=250&fit=crop" alt="Mobile classroom">
+                <span class="img-tag tag-education">Education</span>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Mobile Classroom Initiative Reaches Remote Mountain Districts</h4>
+                <div class="card-meta">
+                    <span class="card-date">Jan 6, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <div class="card card-quote">
+            <blockquote>"The earth is but one country, and mankind its citizens."</blockquote>
+            <cite>— Bahá'u'lláh</cite>
+        </div>
+
+        <!-- ── ROW 5: two medium-wides ──────────────────────── -->
+
+        <article class="card card-mw">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=900&h=500&fit=crop" alt="Community hands">
+                <span class="recency-badge r-week"><span class="r-dot"></span> 5 days ago</span>
+                <span class="img-tag tag-service">Service</span>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Acts of Service Bind Neighbours Across Faith and Culture in Gujarat</h3>
+                <p class="card-excerpt">Interfaith service projects are proving a powerful force for unity, with hundreds of residents working side-by-side on community improvement initiatives across Gujarat's cities and villages.</p>
+                <div class="card-meta">
+                    <span class="card-date">January 6, 2026 · 3 min read</span>
+                    <a href="#" class="card-read">Read more →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card-mw">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=900&h=500&fit=crop" alt="Summer school">
+                <span class="recency-badge r-week"><span class="r-dot"></span> 5 days ago</span>
+                <span class="img-tag tag-events">Events</span>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Summer School Brings 800 Youth Together for Learning, Service and Friendship</h3>
+                <p class="card-excerpt">Participants from 22 states gathered in Pune for a transformative week of study, artistic expression, and collective service — returning home as agents of change.</p>
+                <div class="card-meta">
+                    <span class="card-date">January 6, 2026 · 6 min read</span>
+                    <a href="#" class="card-read">Read more →</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ── ROW 6: text + smalls + text ──────────────────── -->
+
+        <div class="card card-text">
+            <span class="static-tag tag-devotion">Devotional Life</span>
+            <h4 class="card-title">Prayer Gatherings See Record Attendance This Season</h4>
+            <span class="card-date">January 5, 2026</span>
+        </div>
+
+        <article class="card card-small">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&h=240&fit=crop" alt="Nature green">
+                <span class="img-tag tag-service">Service</span>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Tree-Planting Drive Restores Forest Corridor in Madhya Pradesh</h4>
+                <div class="card-meta">
+                    <span class="card-date">Jan 5, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card-small">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=240&fit=crop" alt="Arts">
+                <span class="img-tag tag-youth">Youth</span>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Arts and Drama Workshop Inspires Young People to Tell Their Stories</h4>
+                <div class="card-meta">
+                    <span class="card-date">Jan 4, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <div class="card card-text">
+            <span class="static-tag tag-education">Education</span>
+            <h4 class="card-title">Curriculum for Moral Education Adopted by Three State Boards</h4>
+            <span class="card-date">January 4, 2026</span>
+        </div>
+
+        <div class="card card-text">
+            <span class="static-tag tag-health">Healthcare</span>
+            <h4 class="card-title">Mental Health Awareness Initiative Launched in Colleges Nationwide</h4>
+            <span class="card-date">January 3, 2026</span>
+        </div>
+
+        <article class="card card-small">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=400&h=240&fit=crop" alt="Children">
+                <span class="img-tag tag-youth">Youth</span>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Children's Classes Expand to 300 New Neighbourhoods Across India</h4>
+                <div class="card-meta">
+                    <span class="card-date">Jan 3, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card-small">
+            <div class="card-img-wrap">
+                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=240&fit=crop" alt="Women Tamil Nadu">
+                <span class="img-tag tag-women">Women's Advancement</span>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Women Leaders Drive Literacy Programme in Rural Tamil Nadu</h4>
+                <div class="card-meta">
+                    <span class="card-date">Jan 3, 2026</span>
+                    <a href="#" class="card-read">Read →</a>
+                </div>
+            </div>
+        </article>
+
+    </div><!-- /bento -->
+</div><!-- /main -->
+
+<!-- ── NEWSLETTER ─────────────────────────────────────────── -->
+<div class="nl-strip">
+    <div class="nl-inner">
+        <div class="nl-text">
+            <h3>Stay connected with the community.</h3>
+            <p>Receive the latest news and stories from the Bahá'í community across India.</p>
+        </div>
+        <form class="nl-form" onsubmit="handleNl(event)">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Archive</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 National Spiritual Assembly of the Bahá'ís of India. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<!-- ── SUBSCRIBE POPUP ────────────────────────────────────── -->
+<div class="popup-backdrop" id="popup" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="popup-box">
+        <button class="popup-close" onclick="document.getElementById('popup').classList.remove('open')">&times;</button>
+        <h2>Stay Connected</h2>
+        <p>Subscribe to receive the latest news, events, and insights from the Bahá'í community across India — delivered straight to your inbox.</p>
+        <form class="popup-form" onsubmit="handleNl(event)">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') document.getElementById('popup').classList.remove('open');
+    });
+    function handleNl(e) {
+        e.preventDefault();
+        const email = e.target.querySelector('input').value;
+        alert('Thank you! Updates will be sent to: ' + email);
+        document.getElementById('popup').classList.remove('open');
+        e.target.reset();
+    }
+</script>
+</body>
+</html>

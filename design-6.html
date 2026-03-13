@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bahá'í India News Service</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root {
+  --navy:     #162840;
+  --navy-dk:  #0c1a2b;
+  --navy-md:  #1e3a5c;
+  --gold:     #b8803a;
+  --gold-lt:  #e8c98a;
+  --gold-pale:#fdf5e6;
+  --cream:    #f7f3ee;
+  --paper:    #ffffff;
+  --ink:      #161616;
+  --ink-2:    #3d4f62;
+  --ink-3:    #6b7f94;
+  --border:   #e5e0d8;
+  --red:      #c0392b;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+/* ── HEADER ─────────────────────────────────────────── */
+header {
+  background: var(--navy-dk);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.35);
+}
+.header-top {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.logo { display: flex; align-items: center; gap: .85rem; flex-shrink: 0; }
+.logo-mark {
+  width: 34px; height: 34px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-mark svg { color: var(--gold); }
+.logo-text { display: flex; flex-direction: column; gap: 1px; }
+.logo-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: .01em;
+}
+.logo-sub {
+  font-size: .55rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+.header-nav { display: flex; }
+.header-nav a {
+  padding: 0 .8rem;
+  color: rgba(255,255,255,.45);
+  text-decoration: none;
+  font-size: .75rem;
+  font-weight: 500;
+  height: 60px;
+  display: flex; align-items: center;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+  white-space: nowrap;
+  letter-spacing: .02em;
+}
+.header-nav a:hover { color: #fff; border-bottom-color: var(--gold); }
+.header-actions { display: flex; align-items: center; gap: .75rem; flex-shrink: 0; }
+.search-btn {
+  background: none; border: none; cursor: pointer;
+  color: rgba(255,255,255,.45);
+  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+  border-radius: 4px; transition: color .2s, background .2s;
+}
+.search-btn:hover { color: #fff; background: rgba(255,255,255,.08); }
+.sub-btn {
+  padding: .38rem 1.1rem;
+  background: var(--gold);
+  color: #fff;
+  border: none; border-radius: 2px;
+  font-family: 'Outfit', sans-serif;
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  cursor: pointer; white-space: nowrap;
+  transition: background .2s;
+}
+.sub-btn:hover { background: #9e6c2a; }
+.ham {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer;
+}
+.ham span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; }
+
+/* Slim category bar */
+.cat-bar { background: var(--navy-md); border-top: 1px solid rgba(255,255,255,.05); }
+.cat-bar-inner {
+  max-width: 1560px; margin: 0 auto; padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.cat-scroll { display: flex; overflow-x: auto; scrollbar-width: none; }
+.cat-scroll::-webkit-scrollbar { display: none; }
+.cat-btn {
+  padding: .42rem .95rem;
+  color: rgba(255,255,255,.38);
+  background: none; border: none;
+  border-bottom: 2px solid transparent;
+  font-family: 'Outfit', sans-serif;
+  font-size: .64rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  cursor: pointer; white-space: nowrap;
+  transition: color .2s, border-color .2s;
+}
+.cat-btn:hover { color: rgba(255,255,255,.78); }
+.cat-btn.active { color: #fff; border-bottom-color: var(--gold); }
+.datestamp {
+  font-size: .62rem; color: rgba(255,255,255,.22);
+  white-space: nowrap; flex-shrink: 0; letter-spacing: .04em;
+}
+
+.mobile-nav {
+  display: none; flex-direction: column;
+  background: var(--navy-dk); border-top: 1px solid rgba(255,255,255,.07);
+  padding: .5rem 2rem 1.25rem; gap: 0;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  padding: .72rem 0; color: rgba(255,255,255,.7);
+  text-decoration: none; font-size: .9rem;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.mobile-nav .sub-btn { margin: .85rem 0 0; width: 100%; text-align: center; }
+
+/* ── TICKER ─────────────────────────────────────────── */
+.ticker-wrap {
+  background: var(--red);
+  overflow: hidden; height: 28px;
+  display: flex; align-items: center;
+}
+.ticker-label {
+  background: var(--navy-dk); color: #fff;
+  padding: 0 1rem;
+  font-size: .56rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  height: 100%; display: flex; align-items: center; flex-shrink: 0;
+  gap: .5rem;
+}
+.ticker-dot { width: 5px; height: 5px; background: var(--red); border-radius: 50%; animation: blink 1.4s infinite; }
+.ticker-track {
+  display: flex; align-items: center;
+  animation: ticker 44s linear infinite;
+  white-space: nowrap; gap: 2.5rem; padding-left: 2rem;
+}
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.ticker-track span { font-size: .7rem; font-weight: 600; color: #fff; letter-spacing: .02em; }
+.ticker-track .sep { opacity: .45; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+/* ── MAIN WRAPPER ───────────────────────────────────── */
+.main {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 2rem 2rem 5rem;
+}
+
+.section-eyebrow {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+.eyebrow-left { display: flex; align-items: center; gap: .7rem; }
+.eyebrow-rule { width: 28px; height: 3px; background: var(--gold); border-radius: 2px; }
+.eyebrow-text { font-size: .6rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
+.view-all {
+  font-size: .72rem; font-weight: 600; color: var(--ink-3);
+  text-decoration: none; display: flex; align-items: center; gap: .3rem; transition: color .2s;
+}
+.view-all:hover { color: var(--navy); }
+
+/* ── BENTO GRID ─────────────────────────────────────── */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 4px;
+}
+
+/* ── BASE CARD ──────────────────────────────────────── */
+.card {
+  background: var(--paper);
+  display: flex; flex-direction: column;
+  overflow: hidden; border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  transition: transform .28s ease, box-shadow .28s ease;
+  animation: fadeUp .5s ease both;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,.13);
+  z-index: 5;
+}
+
+/* Stagger delays */
+.card:nth-child(1)  { animation-delay: .04s }
+.card:nth-child(2)  { animation-delay: .08s }
+.card:nth-child(3)  { animation-delay: .12s }
+.card:nth-child(4)  { animation-delay: .16s }
+.card:nth-child(5)  { animation-delay: .19s }
+.card:nth-child(6)  { animation-delay: .22s }
+.card:nth-child(7)  { animation-delay: .25s }
+.card:nth-child(8)  { animation-delay: .27s }
+.card:nth-child(9)  { animation-delay: .29s }
+.card:nth-child(10) { animation-delay: .31s }
+.card:nth-child(11) { animation-delay: .33s }
+.card:nth-child(12) { animation-delay: .35s }
+.card:nth-child(13) { animation-delay: .37s }
+.card:nth-child(14) { animation-delay: .38s }
+.card:nth-child(15) { animation-delay: .39s }
+.card:nth-child(16) { animation-delay: .40s }
+.card:nth-child(17) { animation-delay: .41s }
+.card:nth-child(18) { animation-delay: .42s }
+.card:nth-child(19) { animation-delay: .43s }
+.card:nth-child(20) { animation-delay: .44s }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+/* Image wrapper */
+.card-img-wrap {
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+.card-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .65s ease, filter .35s;
+  filter: brightness(.93) saturate(.9);
+}
+.card:hover .card-img-wrap img {
+  transform: scale(1.05);
+  filter: brightness(.86) saturate(1.08);
+}
+
+/* Recency badge — floating top-left of image */
+.r-badge {
+  position: absolute; top: .65rem; left: .65rem; z-index: 3;
+  display: flex; align-items: center; gap: .3rem;
+  background: rgba(8,16,28,.68);
+  backdrop-filter: blur(8px);
+  border-radius: 100px;
+  padding: .18rem .6rem;
+  font-size: .56rem; font-weight: 700;
+  color: rgba(255,255,255,.85);
+  letter-spacing: .06em;
+}
+.r-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+.r-live .r-dot { background: #4ade80; animation: blink 1.6s infinite; }
+.r-day  .r-dot { background: var(--gold); }
+.r-week .r-dot { background: var(--ink-3); }
+
+/* Category chip — bottom-left of image */
+.cat-chip {
+  position: absolute; bottom: .65rem; left: .65rem; z-index: 3;
+  padding: .2rem .6rem;
+  font-size: .52rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: #fff; border-radius: 2px;
+}
+.c-service   { background: var(--gold); }
+.c-events    { background: #2563eb; }
+.c-education { background: #16a34a; }
+.c-youth     { background: #7c3aed; }
+.c-women     { background: #db2777; }
+.c-devotion  { background: #ea580c; }
+.c-health    { background: #0891b2; }
+
+/* ── CARD BODY ──────────────────────────────────────── */
+/* All text lives BELOW the image — no overlays */
+.card-body {
+  padding: 1rem 1.1rem 1.1rem;
+  display: flex; flex-direction: column; gap: 0;
+  flex-shrink: 0;
+  /* Gold left border accent on body */
+  border-left: 3px solid transparent;
+  transition: border-color .25s;
+}
+.card:hover .card-body { border-left-color: var(--gold); }
+
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--ink);
+  line-height: 1.18;
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+.card-excerpt {
+  font-size: .8rem;
+  color: var(--ink-2);
+  line-height: 1.62;
+  margin-bottom: .65rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: .6rem;
+  margin-top: auto;
+}
+.card-date { font-size: .6rem; font-weight: 500; color: var(--ink-3); letter-spacing: .03em; }
+.card-read {
+  font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: .3rem;
+  transition: gap .2s, color .2s;
+}
+.card-read:hover { color: #9e6c2a; gap: .5rem; }
+
+/* ── SIZE VARIANTS ──────────────────────────────────── */
+
+/* HERO — full 12 cols, very large image */
+.card-hero { grid-column: span 12; flex-direction: row; }
+.card-hero .card-img-wrap { width: 62%; height: 520px; flex-shrink: 0; }
+.card-hero .card-body {
+  flex: 1;
+  padding: 2.5rem 2.5rem 2rem;
+  justify-content: flex-end;
+  gap: 0;
+  border-left: none;
+  border-top: none;
+  background: var(--navy-dk);
+  position: relative;
+}
+.card-hero .card-body::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.card-hero:hover .card-body { border-left: none; }
+.card-hero .hero-eyebrow {
+  font-size: .58rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: .75rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.hero-pulse {
+  width: 6px; height: 6px; border-radius: 50%; background: #4ade80;
+  animation: blink 1.6s infinite; flex-shrink: 0;
+}
+.card-hero .card-title { font-size: 2.5rem; color: #fff; line-height: 1.1; margin-bottom: .85rem; }
+.card-hero .card-excerpt { font-size: .92rem; color: rgba(255,255,255,.62); -webkit-line-clamp: 4; margin-bottom: 1.25rem; }
+.card-hero .card-footer { border-top-color: rgba(255,255,255,.12); padding-top: .85rem; }
+.card-hero .card-date { color: rgba(255,255,255,.38); }
+.card-hero .card-read { color: var(--gold-lt); font-size: .68rem; }
+.card-hero .cat-chip { bottom: auto; top: .65rem; }
+.hero-tag-static {
+  display: inline-block; padding: .22rem .7rem;
+  font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: #fff; border-radius: 2px; margin-bottom: 1rem; align-self: flex-start;
+}
+
+/* FEATURE — 8 cols, large horizontal layout */
+.card-feature { grid-column: span 8; }
+.card-feature .card-img-wrap { height: 310px; }
+.card-feature .card-title { font-size: 1.55rem; margin-bottom: .55rem; }
+.card-feature .card-excerpt { -webkit-line-clamp: 3; }
+.card-feature .card-body { padding: 1.3rem 1.4rem 1.25rem; }
+
+/* SIDE — 4 cols next to feature */
+.card-side { grid-column: span 4; }
+.card-side .card-img-wrap { height: 155px; }
+.card-side .card-title { font-size: .98rem; margin-bottom: .4rem; }
+.card-side .card-excerpt { -webkit-line-clamp: 2; }
+
+/* MEDIUM — 4 cols */
+.card-medium { grid-column: span 4; }
+.card-medium .card-img-wrap { height: 195px; }
+.card-medium .card-title { font-size: .98rem; margin-bottom: .4rem; }
+.card-medium .card-excerpt { -webkit-line-clamp: 2; }
+
+/* WIDE — 8 cols, landscape */
+.card-wide { grid-column: span 8; }
+.card-wide .card-img-wrap { height: 230px; }
+.card-wide .card-title { font-size: 1.3rem; margin-bottom: .5rem; }
+.card-wide .card-excerpt { -webkit-line-clamp: 2; }
+.card-wide .card-body { padding: 1.2rem 1.3rem 1.15rem; }
+
+/* SLIM — 3 cols, compact */
+.card-slim { grid-column: span 3; }
+.card-slim .card-img-wrap { height: 160px; }
+.card-slim .card-title { font-size: .86rem; margin-bottom: .35rem; }
+.card-slim .card-excerpt { font-size: .74rem; -webkit-line-clamp: 2; }
+.card-slim .card-body { padding: .85rem .9rem .9rem; }
+
+/* MINI — 3 cols, even more compact */
+.card-mini { grid-column: span 3; }
+.card-mini .card-img-wrap { height: 140px; }
+.card-mini .card-title { font-size: .82rem; margin-bottom: .32rem; }
+.card-mini .card-excerpt { font-size: .72rem; -webkit-line-clamp: 2; }
+.card-mini .card-body { padding: .78rem .85rem .82rem; }
+
+/* QUOTE CARD — 3 cols, dark, no image */
+.card-quote {
+  grid-column: span 3;
+  background: var(--navy);
+  padding: 1.5rem 1.4rem;
+  justify-content: center;
+  gap: 1rem;
+  cursor: default;
+  border-color: transparent;
+}
+.card-quote:hover { transform: none; box-shadow: none; }
+.card-quote::before {
+  content: '\201C';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4.5rem;
+  color: var(--gold);
+  line-height: .7;
+  opacity: .7;
+  display: block;
+}
+.card-quote blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 1.08rem;
+  color: var(--gold-lt); line-height: 1.55;
+}
+.card-quote cite {
+  font-size: .6rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.28); display: block;
+}
+
+/* TEXT-ONLY card — 3 cols, dark, no image */
+.card-text {
+  grid-column: span 3;
+  background: var(--navy-md);
+  padding: 1.1rem 1.1rem;
+  justify-content: space-between;
+  gap: .5rem;
+  border-color: transparent;
+}
+.card-text:hover { background: var(--navy); }
+.card-text .card-title { font-family: 'Cormorant Garamond', serif; font-size: .96rem; color: #fff; line-height: 1.2; margin-bottom: .35rem; }
+.card-text .card-excerpt { font-size: .72rem; color: rgba(255,255,255,.48); -webkit-line-clamp: 2; margin-bottom: .5rem; }
+.card-text .text-chip { display: inline-block; padding: .18rem .55rem; font-size: .52rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #fff; border-radius: 2px; margin-bottom: .55rem; align-self: flex-start; }
+.card-text .card-footer { border-top-color: rgba(255,255,255,.1); }
+.card-text .card-date { color: rgba(255,255,255,.3); }
+.card-text .card-read { color: var(--gold-lt); }
+.card-text:hover .card-body { border-left: none; }
+
+/* ── NEWSLETTER ─────────────────────────────────────── */
+.nl-strip { background: var(--navy-dk); margin-top: 4px; border-top: 3px solid var(--gold); }
+.nl-inner {
+  max-width: 1560px; margin: 0 auto; padding: 2.25rem 2rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+}
+.nl-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: #fff; margin-bottom: .3rem; font-weight: 600; }
+.nl-text p  { font-size: .8rem; color: rgba(255,255,255,.38); }
+.nl-form { display: flex; gap: .5rem; flex-wrap: wrap; }
+.nl-form input {
+  padding: .65rem 1.1rem;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12); border-radius: 2px;
+  color: #fff; font-family: 'Outfit', sans-serif; font-size: .83rem;
+  width: 240px;
+}
+.nl-form input::placeholder { color: rgba(255,255,255,.28); }
+.nl-form input:focus { outline: none; border-color: var(--gold); }
+.nl-form button {
+  padding: .65rem 1.5rem;
+  background: var(--gold); color: #fff; border: none; border-radius: 2px;
+  font-family: 'Outfit', sans-serif; font-size: .78rem; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase; cursor: pointer; transition: background .2s;
+}
+.nl-form button:hover { background: #9e6c2a; }
+
+/* ── FOOTER ─────────────────────────────────────────── */
+footer { border-top: 1px solid var(--border); background: var(--cream); }
+.footer-inner {
+  max-width: 1560px; margin: 0 auto; padding: 1.4rem 2rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+}
+.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.footer-links a { font-size: .74rem; color: var(--ink-3); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--navy); }
+.footer-copy { font-size: .68rem; color: #bbb; }
+
+/* ── POPUP ──────────────────────────────────────────── */
+.popup-bd {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.55); z-index: 500;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.popup-bd.open { display: flex; }
+.popup-box {
+  background: var(--gold-pale);
+  padding: 2.5rem 2.25rem; border-radius: 4px;
+  max-width: 500px; width: 90%; position: relative;
+  box-shadow: 0 28px 72px rgba(0,0,0,.22);
+  animation: popIn .32s ease-out both;
+  border-top: 4px solid var(--gold);
+}
+@keyframes popIn { from{transform:translateY(-24px);opacity:0} to{transform:translateY(0);opacity:1} }
+.popup-close {
+  position: absolute; top: .9rem; right: .9rem;
+  background: none; border: none; font-size: 1.4rem;
+  color: var(--navy); cursor: pointer; width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; transition: background .2s;
+}
+.popup-close:hover { background: rgba(0,0,0,.07); }
+.popup-box h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--navy); margin-bottom: .5rem; font-weight: 700; }
+.popup-box p  { font-size: .86rem; color: #4a6075; margin-bottom: 1.4rem; line-height: 1.65; }
+.popup-form { display: flex; gap: .6rem; flex-wrap: wrap; }
+.popup-form input { flex:1; min-width:170px; padding:.78rem 1rem; border:none; border-radius:2px; font-size:.86rem; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.07); }
+.popup-form input:focus { outline: 2px solid var(--gold); }
+.popup-form button { padding:.78rem 1.5rem; background:var(--gold); color:#fff; border:none; border-radius:2px; font-family:'Outfit',sans-serif; font-size:.82rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; transition:background .2s; }
+.popup-form button:hover { background: #9e6c2a; }
+
+/* ── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .bento { grid-template-columns: repeat(8, 1fr); }
+  .card-hero { grid-column: span 8; flex-direction: column; }
+  .card-hero .card-img-wrap { width: 100%; height: 340px; }
+  .card-hero .card-title { font-size: 1.9rem; }
+  .card-hero .card-body { padding: 1.6rem; }
+  .card-feature { grid-column: span 8; }
+  .card-feature .card-img-wrap { height: 260px; }
+  .card-wide   { grid-column: span 8; }
+  .card-side, .card-medium { grid-column: span 4; }
+  .card-slim, .card-mini, .card-quote, .card-text { grid-column: span 4; }
+}
+@media (max-width: 760px) {
+  .header-nav, .sub-btn.desk { display: none; }
+  .ham { display: flex; }
+  .datestamp { display: none; }
+  .bento { grid-template-columns: repeat(4, 1fr); gap: 3px; }
+  .card-hero, .card-feature, .card-wide,
+  .card-side, .card-medium,
+  .card-slim, .card-mini,
+  .card-quote, .card-text { grid-column: span 4; }
+  .card-hero { flex-direction: column; }
+  .card-hero .card-img-wrap { width: 100%; height: 240px; }
+  .card-hero .card-title { font-size: 1.55rem; }
+  .card-feature .card-img-wrap { height: 220px; }
+}
+@media (max-width: 480px) {
+  .bento { grid-template-columns: repeat(2, 1fr); }
+  .card-hero, .card-feature, .card-wide,
+  .card-side, .card-medium,
+  .card-slim, .card-mini,
+  .card-quote, .card-text { grid-column: span 2; }
+  .card-hero .card-img-wrap { height: 200px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ────────────────────────────────────────── -->
+<header>
+  <div class="header-top">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="7.05" y2="7.05"/><line x1="16.95" y1="16.95" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="7.05" y2="16.95"/><line x1="16.95" y1="7.05" x2="19.78" y2="4.22"/></svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Bahá'í India News Service</span>
+        <span class="logo-sub">India · Community · Spirit</span>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a href="#">Home</a>
+      <a href="#">Community</a>
+      <a href="#">Service</a>
+      <a href="#">Youth</a>
+      <a href="#">Events</a>
+      <a href="#">Teachings</a>
+    </nav>
+    <div class="header-actions">
+      <button class="search-btn" aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="sub-btn desk" onclick="document.getElementById('popup').classList.add('open')">Subscribe</button>
+      <button class="ham" onclick="document.getElementById('mnav').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="cat-bar">
+    <div class="cat-bar-inner">
+      <div class="cat-scroll">
+        <button class="cat-btn active">All</button>
+        <button class="cat-btn">Community Service</button>
+        <button class="cat-btn">Education</button>
+        <button class="cat-btn">Youth</button>
+        <button class="cat-btn">Events</button>
+        <button class="cat-btn">Women's Advancement</button>
+        <button class="cat-btn">Devotional Life</button>
+        <button class="cat-btn">Healthcare</button>
+      </div>
+      <span class="datestamp">Thursday, 12 March 2026</span>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mnav">
+    <a href="#">Home</a><a href="#">Community</a><a href="#">Service</a>
+    <a href="#">Youth</a><a href="#">Events</a><a href="#">Teachings</a>
+    <button class="sub-btn" onclick="document.getElementById('popup').classList.add('open')">Subscribe</button>
+  </nav>
+</header>
+
+<!-- ── TICKER ────────────────────────────────────────── -->
+<div class="ticker-wrap">
+  <div class="ticker-label">
+    <span class="ticker-dot"></span> Live
+  </div>
+  <div style="overflow:hidden;flex:1;">
+    <div class="ticker-track">
+      <span>Youth initiative plants 500th tree in Mumbai</span><span class="sep"> ◆ </span>
+      <span>National Unity Conference opens in New Delhi — 2,000 delegates</span><span class="sep"> ◆ </span>
+      <span>Study circles launched in 14 new rural districts</span><span class="sep"> ◆ </span>
+      <span>Healthcare outreach reaches 50 remote villages in Karnataka</span><span class="sep"> ◆ </span>
+      <span>Women's empowerment workshops begin across Rajasthan</span><span class="sep"> ◆ </span>
+      <span>Youth initiative plants 500th tree in Mumbai</span><span class="sep"> ◆ </span>
+      <span>National Unity Conference opens in New Delhi — 2,000 delegates</span><span class="sep"> ◆ </span>
+      <span>Study circles launched in 14 new rural districts</span><span class="sep"> ◆ </span>
+      <span>Healthcare outreach reaches 50 remote villages in Karnataka</span><span class="sep"> ◆ </span>
+      <span>Women's empowerment workshops begin across Rajasthan</span><span class="sep"> ◆ </span>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN ──────────────────────────────────────────── -->
+<div class="main">
+
+  <div class="section-eyebrow">
+    <div class="eyebrow-left">
+      <div class="eyebrow-rule"></div>
+      <span class="eyebrow-text">Latest News</span>
+    </div>
+    <a href="#" class="view-all">View all stories <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
+
+  <div class="bento">
+
+    <!-- ══ 1. HERO (full 12-col, horizontal split) ════════════════ -->
+    <article class="card card-hero">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1400&h=800&fit=crop" alt="Community unity">
+        <span class="cat-chip c-service">Community Service</span>
+      </div>
+      <div class="card-body">
+        <div class="hero-eyebrow"><span class="hero-pulse"></span> Breaking — 2 hours ago</div>
+        <span class="hero-tag-static c-service">Community Service</span>
+        <h2 class="card-title">Youth Groups Lead Environmental Initiative — 500 Trees Planted Across 12 Neighbourhoods in Mumbai</h2>
+        <p class="card-excerpt">Bahá'í youth across Mumbai have launched an inspiring community-driven environmental project, planting over 500 trees and organising citywide cleanup drives that are transforming neighbourhoods one block at a time. The initiative, now in its third month, has drawn volunteers from across all faiths and backgrounds in the city.</p>
+        <div class="card-footer">
+          <span class="card-date">January 11, 2026 · 5 min read</span>
+          <a href="#" class="card-read">Read full story →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══ ROW 2: Feature (8) + two sides (4+4) stacked ══════════ -->
+
+    <!-- 2. FEATURE -->
+    <article class="card card-feature">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1000&h=600&fit=crop" alt="Unity Conference">
+        <span class="r-badge r-live"><span class="r-dot"></span> 4 hrs ago</span>
+        <span class="cat-chip c-events">Events</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">National Unity Conference Brings Together 2,000 Delegates in New Delhi</h3>
+        <p class="card-excerpt">Representatives from 28 states convened at the landmark conference, discussing how Bahá'í principles of unity and consultation can guide community building in an increasingly polarised society.</p>
+        <div class="card-footer">
+          <span class="card-date">January 11, 2026 · 4 min read</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. SIDE top -->
+    <article class="card card-side">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&h=400&fit=crop" alt="Women">
+        <span class="r-badge r-day"><span class="r-dot"></span> Yesterday</span>
+        <span class="cat-chip c-women">Women's Adv.</span>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Women's Empowerment Workshops Transform Lives Across Karnataka</h4>
+        <p class="card-excerpt">Skill-building sessions and mentorship circles are giving women new confidence and pathways to leadership roles in their communities.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 10, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. SIDE bottom -->
+    <article class="card card-side">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=700&h=400&fit=crop" alt="Learning centres">
+        <span class="r-badge r-day"><span class="r-dot"></span> Yesterday</span>
+        <span class="cat-chip c-education">Education</span>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">New Learning Centres Open in 14 Rural Communities Across India</h4>
+        <p class="card-excerpt">Community-run centres are providing children and adults with access to quality education grounded in moral development and service.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 10, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══ ROW 3: four mediums ════════════════════════════════════ -->
+
+    <!-- 5 -->
+    <article class="card card-medium">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop" alt="Youth">
+        <span class="r-badge r-day"><span class="r-dot"></span> Yesterday</span>
+        <span class="cat-chip c-youth">Youth</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Junior Youth Groups Explore Purpose and Service in New Semester</h3>
+        <p class="card-excerpt">Hundreds of young people across India are engaging in study circles that explore themes of identity, contribution, and moral courage in daily life.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 10, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="card card-medium">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop" alt="Healthcare">
+        <span class="r-badge r-day"><span class="r-dot"></span> 2 days ago</span>
+        <span class="cat-chip c-health">Healthcare</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Healthcare Outreach Programme Reaches 50 Remote Villages in Karnataka</h3>
+        <p class="card-excerpt">Volunteer doctors and nurses brought essential medical services and health education to underserved communities, treating over 4,000 patients in three weeks.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 9, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 7 -->
+    <article class="card card-medium">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&h=400&fit=crop" alt="Devotional">
+        <span class="r-badge r-day"><span class="r-dot"></span> 2 days ago</span>
+        <span class="cat-chip c-devotion">Devotional Life</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Devotional Gatherings Foster Deep Community Bonds Across Indian Cities</h3>
+        <p class="card-excerpt">Prayer meetings and devotional gatherings have seen record attendance this season, with participants citing a growing sense of belonging and spiritual renewal.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 9, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 8 -->
+    <article class="card card-medium">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop" alt="Study circles">
+        <span class="r-badge r-day"><span class="r-dot"></span> 3 days ago</span>
+        <span class="cat-chip c-youth">Youth</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Study Circles Draw Hundreds of Young People to Moral Inquiry and Reflection</h3>
+        <p class="card-excerpt">Facilitated conversations on topics ranging from the nature of knowledge to the role of the individual in society are drawing youth across the country.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 8, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══ ROW 4: WIDE (8) + quote (4) ═══════════════════════════ -->
+
+    <!-- 9. WIDE -->
+    <article class="card card-wide">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&h=560&fit=crop" alt="Library">
+        <span class="r-badge r-week"><span class="r-dot"></span> 3 days ago</span>
+        <span class="cat-chip c-education">Education</span>
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">Community Libraries Become Hubs of Knowledge and Spiritual Growth for Thousands Across India</h2>
+        <p class="card-excerpt">From Chennai to Chandigarh, Bahá'í-inspired reading rooms and libraries have transformed into gathering spaces where people of all ages explore literature, science, and the arts in an atmosphere of inquiry and respect.</p>
+        <div class="card-footer">
+          <span class="card-date">January 8, 2026 · 4 min read</span>
+          <a href="#" class="card-read">Read more →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 10. QUOTE — fills 4 cols next to wide -->
+    <div class="card card-quote" style="grid-column: span 4;">
+      <blockquote>"The earth is but one country, and mankind its citizens."</blockquote>
+      <cite>— Bahá'u'lláh</cite>
+    </div>
+
+    <!-- ══ ROW 5: 4 slims ══════════════════════════════════════════ -->
+
+    <!-- 11 -->
+    <article class="card card-slim">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&h=300&fit=crop" alt="Volunteer build">
+        <span class="cat-chip c-service">Service</span>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Volunteer Builders Construct New School in Chhattisgarh</h4>
+        <p class="card-excerpt">Over 80 volunteers gave their weekends to erect a two-classroom school that will serve 150 children in a remote tribal village.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 7, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 12 -->
+    <article class="card card-slim">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1607748851687-ba9a10438621?w=500&h=300&fit=crop" alt="Festival">
+        <span class="cat-chip c-events">Events</span>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Annual Naw-Rúz Celebrations Planned Across 40 Cities This Year</h4>
+        <p class="card-excerpt">Communities across India are preparing colourful festivities to welcome the Bahá'í New Year, with arts, music, and shared meals open to all.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 7, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 13 -->
+    <article class="card card-slim">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=500&h=300&fit=crop" alt="Train">
+        <span class="cat-chip c-education">Education</span>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Mobile Classroom Initiative Reaches Remote Mountain Districts</h4>
+        <p class="card-excerpt">A fleet of converted buses is bringing interactive learning sessions to children in mountainous regions of Himachal Pradesh and Uttarakhand.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 6, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 14 -->
+    <article class="card card-slim">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1584820927498-cad0e7f9c6e0?w=500&h=300&fit=crop" alt="Health camp">
+        <span class="cat-chip c-health">Healthcare</span>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Free Health Camps Serve Over 3,000 Families in Rural Odisha</h4>
+        <p class="card-excerpt">Medical volunteers held week-long camps offering dental care, vision screening, and maternal health services to families with little access to clinics.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 6, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ══ ROW 6: text-dark + 3 minis + text-dark ════════════════ -->
+
+    <!-- 15. TEXT CARD -->
+    <div class="card card-text">
+      <span class="text-chip c-devotion">Devotional Life</span>
+      <h4 class="card-title">Prayer Gatherings See Record Attendance This Season</h4>
+      <p class="card-excerpt">Neighbourhood prayer circles have grown substantially, with many reporting first-time visitors drawn by word of mouth.</p>
+      <div class="card-footer">
+        <span class="card-date">Jan 5, 2026</span>
+        <a href="#" class="card-read">Read →</a>
+      </div>
+    </div>
+
+    <!-- 16 -->
+    <article class="card card-mini">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&h=260&fit=crop" alt="Forest">
+        <span class="cat-chip c-service">Service</span>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Tree-Planting Drive Restores Forest Corridor in Madhya Pradesh</h4>
+        <p class="card-excerpt">A three-day planting drive involved hundreds of local families and restored a critical wildlife corridor in central India.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 5, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 17 -->
+    <article class="card card-mini">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=260&fit=crop" alt="Arts workshop">
+        <span class="cat-chip c-youth">Youth</span>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Arts and Drama Workshop Inspires Young People to Tell Their Stories</h4>
+        <p class="card-excerpt">A week-long creative workshop helped 120 young participants develop original plays exploring themes of justice, identity, and hope.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 4, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 18 -->
+    <article class="card card-mini">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=260&fit=crop" alt="Women literacy">
+        <span class="cat-chip c-women">Women's Adv.</span>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Women Leaders Drive Literacy Programme in Rural Tamil Nadu</h4>
+        <p class="card-excerpt">A network of women educators is operating grassroots literacy classes in 60 villages, reaching more than 1,200 adults.</p>
+        <div class="card-footer">
+          <span class="card-date">Jan 3, 2026</span>
+          <a href="#" class="card-read">Read →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 19. TEXT CARD -->
+    <div class="card card-text">
+      <span class="text-chip c-education">Education</span>
+      <h4 class="card-title">Moral Education Curriculum Adopted by Three State Boards</h4>
+      <p class="card-excerpt">A curriculum developed by Bahá'í educators has been formally incorporated into the syllabi of three state education boards, reaching millions of students.</p>
+      <div class="card-footer">
+        <span class="card-date">Jan 4, 2026</span>
+        <a href="#" class="card-read">Read →</a>
+      </div>
+    </div>
+
+    <!-- 20. TEXT CARD -->
+    <div class="card card-text">
+      <span class="text-chip c-health">Healthcare</span>
+      <h4 class="card-title">Mental Health Awareness Initiative Launched in Colleges Nationwide</h4>
+      <p class="card-excerpt">A new campus programme trains peer counsellors in compassionate listening and connects students with professional mental health support.</p>
+      <div class="card-footer">
+        <span class="card-date">Jan 3, 2026</span>
+        <a href="#" class="card-read">Read →</a>
+      </div>
+    </div>
+
+  </div><!-- /bento -->
+</div><!-- /main -->
+
+<!-- ── NEWSLETTER ─────────────────────────────────────── -->
+<div class="nl-strip">
+  <div class="nl-inner">
+    <div class="nl-text">
+      <h3>Stay connected with the community.</h3>
+      <p>Receive the latest news and stories from the Bahá'í community across India, delivered weekly.</p>
+    </div>
+    <form class="nl-form" onsubmit="handleNl(event)">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="#">About Us</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Archive</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 National Spiritual Assembly of the Bahá'ís of India. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- ── POPUP ──────────────────────────────────────────── -->
+<div class="popup-bd" id="popup" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="popup-box">
+    <button class="popup-close" onclick="document.getElementById('popup').classList.remove('open')">&times;</button>
+    <h2>Stay Connected</h2>
+    <p>Subscribe to receive the latest news, events, and insights from the Bahá'í community across India — delivered straight to your inbox.</p>
+    <form class="popup-form" onsubmit="handleNl(event)">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('popup').classList.remove('open');
+  });
+  function handleNl(e) {
+    e.preventDefault();
+    alert('Thank you! Updates will be sent to: ' + e.target.querySelector('input').value);
+    document.getElementById('popup').classList.remove('open');
+    e.target.reset();
+  }
+</script>
+</body>
+</html>
