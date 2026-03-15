@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BINS — Design Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #0d1117;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* ── HEADER ─────────────────────────────────── */
+        .header {
+            padding: 3.5rem 2rem 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .header-left h1 {
+            font-family: 'Lora', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.35rem;
+        }
+
+        .header-left p {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.4);
+            font-weight: 400;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(212,165,116,0.1);
+            border: 1px solid rgba(212,165,116,0.2);
+            color: #d4a574;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+        }
+        .badge-dot {
+            width: 6px; height: 6px;
+            background: #d4a574;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(212,165,116,0.4); }
+            50%      { opacity:0.7; box-shadow: 0 0 0 6px rgba(212,165,116,0); }
+        }
+
+        /* ── DIVIDER ─────────────────────────────────── */
+        .divider {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .divider hr {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+
+        /* ── GRID ────────────────────────────────────── */
+        .grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* ── CARD ────────────────────────────────────── */
+        .card {
+            background: #161b25;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+        }
+        .card:hover {
+            border-color: rgba(212,165,116,0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 48px rgba(0,0,0,0.35);
+        }
+
+        /* Preview iframe area */
+        .card-preview {
+            position: relative;
+            height: 266px;
+            background: #0a0d12;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .card-preview iframe {
+            width: 1280px;
+            height: 900px;
+            border: none;
+            transform: scale(0.295);
+            transform-origin: top left;
+            pointer-events: none;
+        }
+
+        /* Loading shimmer */
+        .preview-loader {
+            position: absolute;
+            inset: 0;
+            background: #0a0d12;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: opacity 0.4s;
+        }
+        .preview-loader.done { opacity: 0; pointer-events: none; }
+        .spinner {
+            width: 28px; height: 28px;
+            border: 2px solid rgba(212,165,116,0.15);
+            border-top-color: #d4a574;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Card body */
+        .card-body {
+            padding: 1.4rem 1.5rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .card-num {
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #d4a574;
+            opacity: 0.7;
+        }
+
+        .card-title {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.25;
+        }
+
+        .card-desc {
+            font-size: 0.82rem;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.4);
+            flex: 1;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .tag {
+            padding: 0.2rem 0.65rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 100px;
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: rgba(255,255,255,0.35);
+            text-transform: uppercase;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.25rem;
+            background: rgba(212,165,116,0.1);
+            border: 1px solid rgba(212,165,116,0.22);
+            color: #d4a574;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+            align-self: flex-start;
+        }
+        .card-link:hover {
+            background: rgba(212,165,116,0.18);
+            border-color: rgba(212,165,116,0.45);
+        }
+        .card-link svg { transition: transform 0.2s; }
+        .card-link:hover svg { transform: translateX(3px); }
+
+        /* ── RESPONSIVE ──────────────────────────────── */
+        @media (max-width: 1024px) {
+            .grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 640px) {
+            .grid { grid-template-columns: 1fr; }
+            .header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>Bahá'í India News Service</h1>
+            <p>Featured story section — three design proposals</p>
+        </div>
+      
+    </div>
+
+    <div class="divider"><hr></div>
+
+    <div class="grid">
+
+        <!-- Card 1 -->
+        <div class="card">
+            <div class="card-preview">
+                <div class="preview-loader" id="l1"><div class="spinner"></div></div>
+                <iframe src="design-7.html" onload="done('l1')" title="Design 1"></iframe>
+            </div>
+            <div class="card-body">
+                <span class="card-num">Design 01</span>
+               
+                <a href="design-7.html" target="_blank" class="card-link">
+                    Open Page
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <div class="card-preview">
+                <div class="preview-loader" id="l2"><div class="spinner"></div></div>
+                <iframe src="design-8.html" onload="done('l2')" title="Design 2"></iframe>
+            </div>
+            <div class="card-body">
+                <span class="card-num">Design 02</span>
+               
+                <a href="design-8.html" target="_blank" class="card-link">
+                    Open Page
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+        </div>
+      
+
+    </div>
+
+    <script>
+        function done(id) {
+            setTimeout(() => document.getElementById(id).classList.add('done'), 200);
+        }
+    </script>
+</body>
+</html>

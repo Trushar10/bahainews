@@ -37,10 +37,9 @@
         .utility-bar-inner {
             max-width: 1200px;
             margin: 0 auto;
-             padding: 0 1.5rem;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: space-between;
             height: 36px;
             gap: 1rem;
         }
@@ -931,34 +930,161 @@
         }
         .nl-form button:hover { background:var(--gold-dk); }
 
-        /* ── SINGLE ARTICLE ───────────────────────────────────── */
-        .single-wrap { max-width: 760px; margin: 0 auto; }
-        .back-link {
-            display: inline-flex; align-items: center; gap: 0.4rem;
-            color: var(--sky); text-decoration: none; font-weight: 600;
-            font-size: 0.85rem; margin-bottom: 2rem; transition: color 0.2s;
+        /* ══ SINGLE ARTICLE — EDITORIAL LAYOUT ══════════════════ */
+        .reading-progress {
+            position: fixed; top: 0; left: 0;
+            height: 3px; width: 0%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dk));
+            z-index: 999; transition: width 0.1s linear;
         }
-        .back-link:hover { color: var(--gold-dk); }
-        .article-tag {
-            display: inline-block; background: #e8f1f9; color: var(--navy);
-            padding: 0.3rem 0.9rem; border-radius: 3px; font-size: 0.68rem;
-            font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem;
+        .article-hero-header {
+            position: relative; width: 100%; height: 520px; overflow: hidden;
         }
-        .article-title {
+        .article-hero-header img { width:100%; height:100%; object-fit:cover; display:block; }
+        .article-hero-header-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.5) 50%, rgba(10,22,40,0.12) 100%);
+        }
+        .article-hero-header-back {
+            position: absolute; top: 1.75rem; left: 2rem;
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            color: rgba(255,255,255,0.85); text-decoration: none;
+            font-size: 0.8rem; font-weight: 600;
+            background: rgba(0,0,0,0.3); padding: 0.4rem 0.9rem;
+            border-radius: 4px; border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(4px); transition: background 0.2s;
+        }
+        .article-hero-header-back:hover { background: rgba(0,0,0,0.55); color: #fff; }
+        .article-hero-header-body {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 2.5rem 3rem 2.75rem; max-width: 860px;
+        }
+        .article-hero-tag {
+            display: inline-block; background: var(--gold); color: #fff;
+            padding: 0.3rem 0.9rem; border-radius: 3px;
+            font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.12em; margin-bottom: 1rem;
+        }
+        .article-hero-title {
             font-family: 'Lora', serif;
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            color: #2d3748; line-height: 1.2; margin-bottom: 1rem;
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            color: #fff; line-height: 1.18; margin-bottom: 1.1rem;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.3);
         }
-        .article-meta {
-            display: flex; gap: 1.5rem; align-items: center;
-            flex-wrap: wrap; margin-bottom: 2rem;
-            font-size: 0.85rem; color: var(--muted);
+        .article-hero-meta {
+            display: flex; align-items: center; gap: 1rem;
+            flex-wrap: wrap; font-size: 0.82rem; color: rgba(255,255,255,0.65);
         }
-        .article-hero-img { width:100%; height:400px; object-fit:cover; border-radius:6px; margin-bottom:2rem; }
-        .article-body { font-size:1.1rem; line-height:1.85; color:#2d3748; }
-        .article-body p { margin-bottom: 1.5rem; }
-        .article-body h2 { font-family:'Lora',serif; font-size:1.6rem; color:var(--navy); margin:2.5rem 0 1rem; }
-        .article-body h3 { font-family:'Lora',serif; font-size:1.25rem; color:var(--navy); margin:2rem 0 1rem; }
+        .article-hero-author { display: flex; align-items: center; gap: 0.6rem; }
+        .author-avatar {
+            width: 30px; height: 30px; border-radius: 50%;
+            background: var(--gold); display: flex; align-items: center;
+            justify-content: center; font-size: 0.72rem; font-weight: 700; color: #fff; flex-shrink: 0;
+        }
+        /* Article 2-column layout */
+        .article-layout {
+            max-width: 1200px; margin: 0 auto;
+            padding: 3rem 1.5rem;
+            display: grid; grid-template-columns: 1fr 280px;
+            gap: 4rem; align-items: start;
+        }
+        /* Body */
+        .article-lede {
+            font-size: 1.22rem; line-height: 1.75; color: #3a4a5a;
+            margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border);
+        }
+        .article-body { font-size: 1.08rem; line-height: 1.9; color: #2d3748; }
+        .article-body p { margin-bottom: 1.6rem; }
+        .article-body h2 {
+            font-family: 'Lora', serif; font-size: 1.55rem; color: var(--navy);
+            margin: 3rem 0 1.1rem; padding-top: 0.5rem; border-top: 2px solid var(--border);
+        }
+        .article-body h3 { font-family:'Lora',serif; font-size:1.2rem; color:var(--navy); margin:2.25rem 0 0.9rem; }
+        /* Pull quote */
+        .pull-quote {
+            margin: 2.5rem 0; padding: 1.75rem 2rem;
+            border-left: 4px solid var(--gold);
+            background: var(--cream); border-radius: 0 6px 6px 0;
+        }
+        .pull-quote p {
+            font-family: 'Lora', serif; font-size: 1.2rem !important; font-style: italic;
+            color: var(--navy) !important; line-height: 1.65 !important; margin-bottom: 0.6rem !important;
+        }
+        .pull-quote cite { font-size: 0.78rem; font-style: normal; font-weight: 600; color: var(--gold-dk); letter-spacing: 0.05em; }
+        /* Inline figure */
+        .article-inline-img { margin: 2rem 0; }
+        .article-inline-img img { width: 100%; border-radius: 6px; display: block; }
+        .article-inline-img figcaption { font-size: 0.78rem; color: var(--muted); margin-top: 0.6rem; font-style: italic; }
+        /* Tags */
+        .article-tags {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border);
+        }
+        .article-tag-pill {
+            padding: 0.35rem 0.9rem; border: 1px solid var(--border);
+            border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+            color: var(--navy); text-decoration: none; transition: border-color 0.2s, background 0.2s;
+        }
+        .article-tag-pill:hover { border-color: var(--gold); background: var(--cream); }
+        /* Sidebar */
+        .article-sidebar { position: sticky; top: 90px; display: flex; flex-direction: column; gap: 1.75rem; }
+        .sidebar-block { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: #fff; }
+        .sidebar-block-title {
+            background: var(--navy); color: rgba(255,255,255,0.9);
+            font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em;
+            text-transform: uppercase; padding: 0.6rem 1.1rem;
+        }
+        .sidebar-block-body { padding: 1rem; }
+        .share-buttons { display: flex; flex-direction: column; gap: 0.55rem; }
+        .share-btn {
+            display: flex; align-items: center; gap: 0.6rem;
+            padding: 0.55rem 0.85rem; border-radius: 5px;
+            border: 1px solid var(--border); font-size: 0.79rem; font-weight: 600;
+            color: var(--navy); text-decoration: none; cursor: pointer;
+            background: #fff; font-family: 'DM Sans', sans-serif;
+            transition: background 0.15s, border-color 0.15s; width: 100%;
+        }
+        .share-btn:hover { background: var(--cream); border-color: var(--navy); }
+        .share-icon { width: 26px; height: 26px; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .share-btn.copy-link { border-style: dashed; }
+        .share-btn.copy-link.copied { background: #f0fdf4; border-color: #86efac; color: #16a34a; border-style: solid; }
+        .info-row { display: flex; flex-direction: column; gap: 0.75rem; }
+        .info-item { display: flex; flex-direction: column; gap: 0.15rem; }
+        .info-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+        .info-value { font-size: 0.83rem; color: var(--navy); font-weight: 500; }
+        .related-mini { display: flex; flex-direction: column; gap: 0.85rem; }
+        .related-mini-card { display: flex; gap: 0.75rem; text-decoration: none; transition: opacity 0.2s; }
+        .related-mini-card:hover { opacity: 0.75; }
+        .related-mini-card img { width: 64px; height: 52px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+        .related-mini-tag { font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-dk); margin-bottom: 0.2rem; }
+        .related-mini-title { font-family: 'Lora', serif; font-size: 0.82rem; font-weight: 600; color: var(--navy); line-height: 1.35; }
+        /* Related strip */
+        .related-strip { border-top: 1px solid var(--border); padding: 3rem 0; background: var(--cream); }
+        .related-strip-inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .related-strip h2 { font-family:'Lora',serif; font-size:1.3rem; color:var(--navy); margin-bottom:1.5rem; padding-bottom:0.65rem; border-bottom:2px solid var(--navy); }
+        .related-strip-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+        .related-strip-card { background:#fff; border-radius:6px; overflow:hidden; border:1px solid var(--border); text-decoration:none; display:block; transition:transform 0.2s, box-shadow 0.2s; }
+        .related-strip-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(30,58,95,0.1); }
+        .related-strip-card img { width:100%; height:160px; object-fit:cover; display:block; }
+        .related-strip-card-body { padding:1rem 1.1rem 1.2rem; }
+        /* Single responsive */
+        @media (max-width: 900px) {
+            .article-layout { grid-template-columns: 1fr; gap: 2rem; }
+            .article-sidebar { position: static; flex-direction: row; flex-wrap: wrap; }
+            .sidebar-block { flex: 1 1 220px; }
+            .related-strip-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .article-hero-header { height: 360px; }
+            .article-hero-header-body { padding: 1.25rem 1.25rem 1.75rem; }
+            .article-hero-title { font-size: 1.45rem; }
+            .article-hero-header-back { top: 1rem; left: 1rem; }
+            .article-layout { padding: 1.5rem 1.25rem; }
+            .article-sidebar { flex-direction: column; }
+            .related-strip-grid { grid-template-columns: 1fr; }
+            .pull-quote { padding: 1.2rem 1.2rem; }
+            .pull-quote p { font-size: 1.05rem !important; }
+        }
 
         /* ── SEARCH PAGE ──────────────────────────────────────── */
         .search-wrap { max-width:760px; margin:0 auto 3rem; }
@@ -1076,6 +1202,7 @@
         @media (max-width: 680px) {
             .main-nav { display: none; }
             .mobile-menu-btn { display: flex; }
+            .lang-links { display: none; }
 
             /* ── HERO: pull text OUT of image on mobile ─────────── */
             .hero-main {
@@ -1135,6 +1262,7 @@
         <option value="search">Search</option>
         <option value="404">404 Error</option>
     </select>
+    <span style="font-size:0.75rem;color:#5a8ab5;font-weight:600;">✦ BWNS-Inspired Layout</span>
 </div>
 
 <!-- ── UTILITY BAR ──────────────────────────────────────────── -->
@@ -1153,6 +1281,7 @@
             <span class="sep">|</span>
             <a href="#">मराठी</a>
         </div>
+        <a href="#" class="util-subscribe" onclick="document.getElementById('nl-popup').classList.add('open');return false;">Subscribe</a>
     </div>
 </div>
 
@@ -1547,7 +1676,7 @@
         </form>
     </div>
 
-    <!-- ── APP DOWNLOAD ──────────────────────────────────────── 
+    <!-- ── APP DOWNLOAD ──────────────────────────────────────── -->
     <div class="app-strip">
         <p>Download the app — get notified instantly</p>
         <a href="#" class="app-badge">
@@ -1558,44 +1687,226 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
             Google Play
         </a>
-    </div> -->
+    </div>
 
 </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════
-     SINGLE ARTICLE
+     SINGLE ARTICLE — EDITORIAL LAYOUT
 ══════════════════════════════════════════════════════════ -->
 <div id="page-single" class="hidden">
-<div class="container">
-    <div class="single-wrap">
-        <a href="#" class="back-link" onclick="switchPage('home');return false;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            Back to News
-        </a>
-        <div>
-            <span class="article-tag">Community Service</span>
-            <h1 class="article-title">Youth Groups Lead Environmental Initiative in Mumbai</h1>
-            <div class="article-meta">
-                <span>January 11, 2026</span>
-                <span>·</span>
-                <span>5 min read</span>
+
+<!-- Reading progress bar -->
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- Full-bleed hero header -->
+<div class="article-hero-header">
+    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1400&h=700&fit=crop" alt="Youth environmental initiative in Mumbai">
+    <div class="article-hero-header-overlay"></div>
+    <a href="#" class="article-hero-header-back" onclick="switchPage('home');return false;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to News
+    </a>
+    <div class="article-hero-header-body">
+        <span class="article-hero-tag">Community Service</span>
+        <h1 class="article-hero-title">Youth Groups Lead Environmental Initiative in Mumbai</h1>
+        <div class="article-hero-meta">
+            <div class="article-hero-author">
+                <div class="author-avatar">PS</div>
+                <span>Reported by BINS</span>
             </div>
-        </div>
-        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&h=500&fit=crop" alt="Environmental Initiative" class="article-hero-img">
-        <div class="article-body">
-            <p>Bahá'í youth across Mumbai have launched an inspiring community-driven environmental project that is transforming neighbourhoods and inspiring residents to take action for a more sustainable future.</p>
-            <p>Over the past three months, more than 200 young people have come together to plant over 500 trees across various communities in Mumbai. The initiative, which began as a small project in a single neighbourhood, has grown into a citywide movement that is making a tangible difference in the urban landscape.</p>
-            <h2>A Vision for Sustainable Communities</h2>
-            <p>The project emerged from study circles and youth gatherings where participants explored the relationship between spiritual principles and environmental stewardship. Inspired by Bahá'í teachings on the unity of humanity and our responsibility to care for the earth, the young people decided to translate these ideals into concrete action.</p>
-            <p>"We realised that building a better world isn't just about grand gestures," explains Priya Sharma, one of the youth coordinators. "It starts with service in our own neighbourhoods, working alongside our neighbours to create spaces that are healthier and more beautiful for everyone."</p>
-            <h2>Community Participation and Impact</h2>
-            <p>What makes this initiative particularly remarkable is its inclusive approach. The youth have actively engaged residents from all backgrounds, organising regular cleanup drives, tree-planting events, and educational workshops on sustainable living practices.</p>
-            <h3>Looking Ahead</h3>
-            <p>As the initiative continues to grow, the youth are planning to expand their efforts to include community gardens, waste reduction programs, and educational campaigns about water conservation.</p>
+            <span class="article-hero-meta-sep">·</span>
+            <span>January 11, 2026</span>
+            <span class="article-hero-meta-sep">·</span>
+            <span>5 min read</span>
+            <span class="article-hero-meta-sep">·</span>
+            <span>Mumbai, India</span>
         </div>
     </div>
 </div>
+
+<!-- Article body + sidebar -->
+<div class="article-layout" id="article-content">
+
+    <!-- Main content -->
+    <article class="article-content">
+        <p class="article-lede">Bahá'í youth across Mumbai have launched an inspiring community-driven environmental project that is transforming neighbourhoods and inspiring residents to take action for a more sustainable future — one tree, one neighbourhood at a time.</p>
+
+        <div class="article-body">
+            <p>Over the past three months, more than 200 young people have come together to plant over 500 trees across various communities in Mumbai. The initiative, which began as a small project in a single neighbourhood, has grown into a citywide movement that is making a tangible difference in the urban landscape.</p>
+
+            <p>Volunteers from diverse backgrounds — students, working professionals, and homemakers — have contributed their weekends and evenings to what many describe as a profoundly meaningful experience. Local residents have responded with enthusiasm, with some neighbourhoods even competing to see who can sustain the highest rate of tree survival.</p>
+
+            <h2>A Vision for Sustainable Communities</h2>
+
+            <p>The project emerged from study circles and youth gatherings where participants explored the relationship between spiritual principles and environmental stewardship. Inspired by Bahá'í teachings on the unity of humanity and our collective responsibility to care for the earth, the young people decided to translate these ideals into concrete, visible action.</p>
+
+            <div class="pull-quote">
+                <p>"Building a better world isn't just about grand gestures. It starts with service in our own neighbourhoods — working alongside our neighbours to create spaces that are healthier and more beautiful for everyone."</p>
+                <cite>— Priya Sharma, Youth Coordinator, Mumbai</cite>
+            </div>
+
+            <p>The group has adopted a disciplined approach, identifying sites with the greatest need, consulting with urban ecologists on species selection, and working with municipal authorities to secure permissions. This systematic process has helped the initiative move from a good intention to a replicable model.</p>
+
+            <h2>Community Participation and Impact</h2>
+
+            <figure class="article-inline-img">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=420&fit=crop" alt="Youth volunteers working together at a community event">
+                <figcaption>Youth volunteers and local residents join hands during a weekend cleanup drive in Dharavi, January 2026. Photo: BINS / Rahul Verma</figcaption>
+            </figure>
+
+            <p>What makes this initiative particularly remarkable is its inclusive approach. The youth have actively engaged residents from all backgrounds, organising regular cleanup drives, tree-planting events, and educational workshops on sustainable living practices. No prior experience is required to join — just a willingness to serve.</p>
+
+            <p>Local schools have also joined the effort, with students participating in weekend activities and learning about environmental conservation. The project has created opportunities for people of different ages and backgrounds to work together toward a common goal, strengthening the bonds of community in the process.</p>
+
+            <h3>A Model for Other Cities</h3>
+
+            <p>News of the Mumbai project has spread through Bahá'í communities across India. Similar initiatives have now taken root in Pune, Hyderabad, and Bangalore, each adapted to the specific needs and character of their local environments. Organisers from these cities visited Mumbai in December to learn from the group's experience firsthand.</p>
+
+            <p>As the initiative continues to grow, the youth are planning to expand their efforts to include community gardens, waste reduction programs, and educational campaigns about water conservation. Their success demonstrates the power of collective action guided by a commitment to service and a vision of human prosperity rooted in spiritual principles.</p>
+        </div>
+
+        <div class="article-tags">
+            <a href="#" class="article-tag-pill">Community Service</a>
+            <a href="#" class="article-tag-pill">Youth</a>
+            <a href="#" class="article-tag-pill">Environment</a>
+            <a href="#" class="article-tag-pill">Mumbai</a>
+            <a href="#" class="article-tag-pill">Social Action</a>
+        </div>
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="article-sidebar">
+
+        <!-- Share -->
+        <div class="sidebar-block">
+            <div class="sidebar-block-title">Share This Article</div>
+            <div class="sidebar-block-body">
+                <div class="share-buttons">
+                    <button class="share-btn">
+                        <span class="share-icon" style="background:#1877f2;">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </span>
+                        Share on Facebook
+                    </button>
+                    <button class="share-btn">
+                        <span class="share-icon" style="background:#000;">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M4 4l16 16M4 20L20 4"/><line x1="4" y1="4" x2="20" y2="20"/><line x1="4" y1="20" x2="20" y2="4"/></svg>
+                        </span>
+                        Share on X
+                    </button>
+                    <button class="share-btn">
+                        <span class="share-icon" style="background:#0077b5;">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </span>
+                        Share on LinkedIn
+                    </button>
+                    <button class="share-btn copy-link" id="copy-link-btn" onclick="copyLink()">
+                        <span class="share-icon" style="background:var(--border);">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </span>
+                        <span id="copy-link-label">Copy Link</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article info -->
+        <div class="sidebar-block">
+            <div class="sidebar-block-title">Article Details</div>
+            <div class="sidebar-block-body">
+                <div class="info-row">
+                    <div class="info-item">
+                        <span class="info-label">Published</span>
+                        <span class="info-value">January 11, 2026</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Location</span>
+                        <span class="info-value">Mumbai, India</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Section</span>
+                        <span class="info-value">Community Service</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Reading Time</span>
+                        <span class="info-value">5 minutes</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Source</span>
+                        <span class="info-value">Bahá'í India News Service</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related articles -->
+        <div class="sidebar-block">
+            <div class="sidebar-block-title">Related Articles</div>
+            <div class="sidebar-block-body">
+                <div class="related-mini">
+                    <a class="related-mini-card" href="#">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=140&h=110&fit=crop" alt="">
+                        <div class="related-mini-body">
+                            <p class="related-mini-tag">Education</p>
+                            <p class="related-mini-title">New Learning Centers Open in Rural Communities</p>
+                        </div>
+                    </a>
+                    <a class="related-mini-card" href="#">
+                        <img src="https://images.unsplash.com/photo-1545886082-e66c6b9e011a?w=140&h=110&fit=crop" alt="">
+                        <div class="related-mini-body">
+                            <p class="related-mini-tag">Youth</p>
+                            <p class="related-mini-title">Junior Youth Groups Explore Purpose and Service</p>
+                        </div>
+                    </a>
+                    <a class="related-mini-card" href="#">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=140&h=110&fit=crop" alt="">
+                        <div class="related-mini-body">
+                            <p class="related-mini-tag">Devotional Life</p>
+                            <p class="related-mini-title">Devotional Gatherings Foster Community Spirit</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+</div>
+
+<!-- Related stories strip -->
+<div class="related-strip">
+    <div class="related-strip-inner">
+        <h2>More from Community Service</h2>
+        <div class="related-strip-grid">
+            <a class="related-strip-card" href="#">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=500&h=260&fit=crop" alt="">
+                <div class="related-strip-card-body">
+                    <span class="card-tag">Community Service</span>
+                    <p class="card-title">Healthcare Outreach Reaches Remote Villages Across India</p>
+                    <div class="card-date">January 8, 2026</div>
+                </div>
+            </a>
+            <a class="related-strip-card" href="#">
+                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500&h=260&fit=crop" alt="">
+                <div class="related-strip-card-body">
+                    <span class="card-tag">Events</span>
+                    <p class="card-title">National Unity Conference Brings Together Diverse Voices</p>
+                    <div class="card-date">January 10, 2026</div>
+                </div>
+            </a>
+            <a class="related-strip-card" href="#">
+                <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=500&h=260&fit=crop" alt="">
+                <div class="related-strip-card-body">
+                    <span class="card-tag">Women's Advancement</span>
+                    <p class="card-title">Women's Empowerment Programs Transform Lives in Karnataka</p>
+                    <div class="card-date">January 9, 2026</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
 </div>
 
 <!-- ══════════════════════════════════════════════════════════
@@ -1724,6 +2035,27 @@
 
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') document.getElementById('nl-popup').classList.remove('open');
+    });
+
+    function copyLink() {
+        const btn = document.getElementById('copy-link-btn');
+        const label = document.getElementById('copy-link-label');
+        navigator.clipboard.writeText(window.location.href).catch(() => {});
+        btn.classList.add('copied');
+        label.textContent = '✓ Copied!';
+        setTimeout(() => { btn.classList.remove('copied'); label.textContent = 'Copy Link'; }, 2200);
+    }
+
+    // Reading progress bar
+    window.addEventListener('scroll', () => {
+        const article = document.getElementById('article-content');
+        const bar = document.getElementById('reading-progress');
+        if (!article || !bar) return;
+        const rect = article.getBoundingClientRect();
+        const total = article.offsetHeight - window.innerHeight;
+        const scrolled = -rect.top;
+        const pct = Math.min(Math.max((scrolled / total) * 100, 0), 100);
+        bar.style.width = pct + '%';
     });
 
     document.querySelectorAll('.sec-link').forEach(btn => {
